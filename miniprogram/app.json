@@ -1,18 +1,48 @@
 {
   "pages": [
+    "pages/shouye/shouye",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/chooseLib/chooseLib",
+    "pages/shuju/shuju",
+    "pages/shezhi/shezhi",
+    "pages/yonghuguangli/yonghuguanli",
+    "pages/shedingcanshu/shedingcanshu"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "胜率运算",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#fb594c",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "",
+        "iconPath": "",
+        "pagePath": "pages/shouye/shouye",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "",
+        "iconPath": "",
+        "pagePath": "pages/shuju/shuju",
+        "text": "数据"
+      },
+      {
+        "selectedIconPath": "",
+        "iconPath": "",
+        "pagePath": "pages/shezhi/shezhi",
+        "text": "设置"
+      }
+    ]
   }
 }

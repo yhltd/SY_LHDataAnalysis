@@ -1,0 +1,51 @@
+<!--pages/shouye/shouye.wxml-->
+
+<view class='zhuangxian'>
+<view class='zhuang'>
+庄
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
+<view class="shenglv">胜率：</view>
+</view>
+
+
+
+
+
+<view class='xian'>
+闲
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
+<view class="shenglv">胜率：</view>
+</view>
+</view>
+
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
+
+<view class='luru'>录入：</view>
+<view class='shoulu'>
+
+
+<view class='pai1'>庄家前两张牌:</view>
+<view class='pai1'>闲家前两张牌：</view>
+
+
+</view>
+<view class='pai2'>庄家和闲家第三张牌：</view>
+
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
+<view class='button'>
+<button>计算胜率</button>
+<button>清空</button>
+<button>录入</button>
+</view>

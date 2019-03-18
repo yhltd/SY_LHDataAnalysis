@@ -1,0 +1,16 @@
+<!--pages/shezhi/shezhi.wxml-->
+<button>用户管理</button>
+
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
+
+<button>清空数据</button>
+
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
+
+<button>设定参数</button>
