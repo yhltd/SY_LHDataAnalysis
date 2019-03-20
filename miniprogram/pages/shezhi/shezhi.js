@@ -1,16 +1,46 @@
 // pages/shezhi/shezhi.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    appid: 'wxd747b7dd1d8f9e34',
+    secret: '3199a980a6b595e75c27de6864fdd3a5',
+    showView: true,
+    text: '\n',
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  onGotUserInfo(res) {
+    var that = this;
+    console.log(res.detail.errMsg)
+    console.log(res.detail.userInfo)
+    console.log(res.detail.rawData)
+    var requestUrl = wx.getStorageSync("url")
+    this.setData({
+      login_name: res.detail.userInfo.nickName,
+      gender: res.detail.userInfo.gender,
+       showView: (!that.data.showView)
+        })
+    wx.request({
+      url: requestUrl,
+      data: {
+        code: res.code
+      },
+      success: function (res) {
+        let ret = res.data;
+        if (ret.status == 200) {
+          // 添加到全局数据的header中
+          app.globalData.header.Cookie = 'JSESSIONID=' + ret.data.sessionid;
+        }
+      }
+    })
+  },
   onLoad: function (options) {
 
   },

@@ -7,13 +7,30 @@ Page({
   data: {
 
   },
-
+  compare: function (property) {
+    return function (a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      return value2 - value1;
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
+  onLoad: function () {
+    var all = [];
+    var that=this;
+    const db = wx.cloud.database();
+    db.collection('SY_LHDataAnalysis_shuju').get({
+      success(res) {
+        all.push(res.data)
+        all[0].sort(that.compare("Sort_index"));//排序
+        that.setData({
+          all: all[0]
+        })
+        console.log(res.data)
+      }})}
+  ,
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -6,18 +6,20 @@
 .zhuang{
   width:50%;
 font-size: 50px;
-color: red
+color: red;
+text-align: center;
 }
 .xian{
   width:50%;
   font-size: 50px;
-  color:blue
+  color:blue;
+  text-align: center;
 }
 .shenglv{
   font-size: 20px;
   color:rgb(145, 99, 99);
-  height: 50px
-  
+  height: 50px;
+  text-align: center;
 
 }
 .divLine{
@@ -38,15 +40,22 @@ display: flex;
 .pai1{
 font-size: 15px;
 width: 50%;
-height:100px
+height:100px;
+text-align: center;
 }
 .pai2{
-font-size: 20px;
+font-size: 15px;
 width: 100%;
-height:100px
+height:100px;
+
+  text-align: center;
 }
 .button{
   display: flex;
   width: 100%;
   
+}
+.all{
+
+   /* background-image: url("images/all.jpg"); */
 }

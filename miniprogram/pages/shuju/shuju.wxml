@@ -12,17 +12,23 @@
 <view class='pai1'>第三张牌：</view>
 <view class='pai1'>输赢：</view>
 </view>
-<view id="panel" class="flex-column">
+<!-- <view id="panel" class="flex-column">
   <view  class="flex-cell flex-row">
     <text class="flex-cell flex-row">1</text>
     <text class="flex-cell flex-row">2</text>
     <text class="flex-cell flex-row">3</text>
     <text class="flex-cell flex-row">4</text>
   </view>
- <view  class="flex-cell flex-row">
-    <text class="flex-cell flex-row">1</text>
-    <text class="flex-cell flex-row">2</text>
-    <text class="flex-cell flex-row">3</text>
-    <text class="flex-cell flex-row">4</text>
+ 
+</view> -->
+
+<view class="flex-column" id="panel" wx:for="{{all}}" wx:for-index='i' wx:key="" >
+
+<view  class="flex-cell flex-row">
+    <text class="flex-cell flex-row">{{all[i].shuju1}}</text>
+    <text class="flex-cell flex-row">{{all[i].shuju2}}</text>
+    <text class="flex-cell flex-row">{{all[i].shuju3}}</text>
+    <text class="flex-cell flex-row">{{all[i].shuju4}}</text>
+    
   </view>
-</view>
+</view> 

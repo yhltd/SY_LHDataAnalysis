@@ -1,4 +1,8 @@
 <!--pages/shouye/shouye.wxml-->
+<!-- <image class='all'> -->
+<!-- <view style="background-image: url('/images/all.jpg'); background-size: 100% 100%;"> -->
+ 
+
 
 <view class='zhuangxian'>
 <view class='zhuang'>
@@ -29,7 +33,7 @@
 <view class="divLine"></view>
 </view>
 
-<view class='luru'>录入：</view>
+
 <view class='shoulu'>
 
 
@@ -47,5 +51,6 @@
 <view class='button'>
 <button>计算胜率</button>
 <button>清空</button>
-<button>录入</button>
-</view>
+<button bindlongtap=''>录入</button>
+<!-- </view> -->
+<!-- </image>  --></view>

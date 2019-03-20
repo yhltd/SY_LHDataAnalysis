@@ -1,4 +1,28 @@
 <!--pages/shezhi/shezhi.wxml-->
+<!-- <view wx:if="{{canIUse}}"> -->
+    <!-- <view class='header'>
+        <image class='header_image' src='/images/login.png'></image>
+    </view>
+ 
+    <view class='content' >
+        <view class='viewclass' id='login_name' wx:if="{{login_name}}">{{login_name}}
+        
+        </view>
+        <view   wx:else>
+         <view  class='viewclass'> 申请获取以下权限</view>
+           <text>{{text}}</text>
+         <text class='viewclass'>获得你的公开信息(昵称，头像等)</text>
+        </view>  
+    </view>
+    <text>{{text}}</text>
+    
+
+    <button class="two {{showView?'show':'hide'}}" type='primary' open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+    授权登录    
+ </button> -->
+
+<!-- </view> -->
+
 <button>用户管理</button>
 
 <view class="container">

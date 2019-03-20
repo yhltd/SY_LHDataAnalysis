@@ -1,20 +1,37 @@
 // pages/shouye/shouye.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+     
 
   },
  
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    var that=this
+    const db = wx.cloud.database();
+    db.collection('SY_LHDataAnalysis').doc('XJBD6OSiwXKAQr15').get({
+      success(res) {
+       
+        console.log(res.data)
+      }
+    })
+    //定义一个字符串数组
+    var obj = wx.getStorageSync("openid")
+    var idd = that.data.id;
+    var openid = obj.openid;
+    console.log(openid)
   },
+
+   
+    
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
