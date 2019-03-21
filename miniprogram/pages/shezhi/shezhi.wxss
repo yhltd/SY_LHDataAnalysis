@@ -92,6 +92,12 @@
     font-size: 28rpx;  
     color: gray;
 }
+.nav-mainitem-text {  
+     
+    font-size: 48rpx;  
+    color: black;
+    align-items: center;  
+}
 /* 列表 */
 .person-list {  
     display: flex;  

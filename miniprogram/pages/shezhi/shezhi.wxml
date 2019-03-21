@@ -38,3 +38,7 @@
 </view>
 
 <button>设定参数</button>
+<navigator class="list-item" url='./pages/frmadmin/frmadmin'>
+ <!--    <image class="item-image" src="/pages/images/personal_favorite.png"></image> -->
+    <text class="nav-mainitem-text">管理员</text>
+</navigator>

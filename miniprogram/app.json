@@ -2,7 +2,6 @@
   "pages": [
     "pages/shouye/shouye",
     "pages/index/index",
-  
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -12,7 +11,8 @@
     "pages/shuju/shuju",
     "pages/shezhi/shezhi",
     "pages/yonghuguangli/yonghuguanli",
-    "pages/shedingcanshu/shedingcanshu"
+    "pages/shedingcanshu/shedingcanshu",
+     "pages/adminform"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -25,6 +25,8 @@
     "color": "#707070",
     "selectedColor": "#fb594c",
     "borderStyle": "white",
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#eeeeee",
     "list": [
       {
         "selectedIconPath": "",
@@ -39,9 +41,10 @@
         "text": "数据"
       },
       {
+        "font-size": "250px",
         "selectedIconPath": "",
         "iconPath": "",
-        "pagePath": "pages/shezhi/shezhi",
+    "pagePath": "pages/shezhi/shezhi",
         "text": "设置"
       }
     ]
