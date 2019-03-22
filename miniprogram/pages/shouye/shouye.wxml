@@ -1,17 +1,16 @@
-<!--pages/shouye/shouye.wxml-->
-<!-- <image class='all'> -->
-<!-- <view style="background-image: url('/images/all.jpg'); background-size: 100% 100%;"> -->
+ <import src="/pages/template/pai.wxml"/> 
+ <template is="pai" data="{{item1,item2}}"/>
+<view style="background-image: url('/images/all.png'); min-height:100%; background-size: 100% 100%;">
  
 
 
 <view class='zhuangxian'>
 <view class='zhuang'>
 庄
-<view class="container">
-<!-- 分割线 -->
-<view class="divLine"></view>
+
+<view class="shenglv">胜率：
+<view class='shenglv1'></view>
 </view>
-<view class="shenglv">胜率：</view>
 </view>
 
 
@@ -20,37 +19,60 @@
 
 <view class='xian'>
 闲
-<view class="container">
-<!-- 分割线 -->
-<view class="divLine"></view>
+
+<view class="shenglv">胜率：
+<view class='shenglv1'></view>
 </view>
-<view class="shenglv">胜率：</view>
 </view>
 </view>
 
-<view class="container">
-<!-- 分割线 -->
-<view class="divLine"></view>
-</view>
+
 
 
 <view class='shoulu'>
 
 
-<view class='pai1'>庄家前两张牌:</view>
-<view class='pai1'>闲家前两张牌：</view>
+<view class='pai1'>庄家前两张牌:
+
+</view>
+<view class='pai1'>闲家前两张牌：
+</view>
+</view>
 
 
+<view class='paikongjian'>
+<view  class='pai3'>
+ <view class="section">
+
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+    <view>{{multiArray[0][multiIndex[0]]}}</view>
+    <view>{{multiArray[1][multiIndex[1]]}}</view>
+    </view>
+  </picker>
+</view>
+<view class="section">
+
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+    <view>{{multiArray2[0][multiIndex2[0]]}}</view>
+    <view>{{multiArray2[1][multiIndex2[1]]}}</view>
+    </view>
+  </picker>
+</view>
+
+</view>
+<view  class='pai3'></view>
 </view>
 <view class='pai2'>庄家和闲家第三张牌：</view>
+<view  class='pai4'></view>
 
-<view class="container">
-<!-- 分割线 -->
-<view class="divLine"></view>
-</view>
 <view class='button'>
-<button>计算胜率</button>
-<button>清空</button>
-<button bindlongtap=''>录入</button>
-<!-- </view> -->
-<!-- </image>  --></view>
+<button bindtap="qingkong">清空</button>
+<button bindtap="jisuan"> 计算胜率</button>
+
+<button bindtap='luru'>录入</button>
+
+</view>
+<view class='bai'></view>
+</view>

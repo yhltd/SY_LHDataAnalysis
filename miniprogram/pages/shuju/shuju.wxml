@@ -1,26 +1,24 @@
 <!--pages/shuju/shuju.wxml-->
-<view>历史数据：</view>
+<view style="background-image: url('/images/all.png'); min-height:100%;background-size: 100% 100%;">
+<view class="lishi">历史数据：</view>
 
-<view class="container">
+<!-- <view class="container">
 <!-- 分割线 -->
-<view class="divLine"></view>
-</view>
+<!-- <view class="divLine"></view>
+</view> --> 
 
 <view class='pai'>
-<view class='pai1'>庄家前两张牌:</view>
+<view class='pai1'>庄家前两张牌:
+
+
+
+
+</view>
 <view class='pai1'>闲家前两张牌：</view>
 <view class='pai1'>第三张牌：</view>
-<view class='pai1'>输赢：</view>
+<view class='pai1'>庄家输赢：</view>
 </view>
-<!-- <view id="panel" class="flex-column">
-  <view  class="flex-cell flex-row">
-    <text class="flex-cell flex-row">1</text>
-    <text class="flex-cell flex-row">2</text>
-    <text class="flex-cell flex-row">3</text>
-    <text class="flex-cell flex-row">4</text>
-  </view>
- 
-</view> -->
+
 
 <view class="flex-column" id="panel" wx:for="{{all}}" wx:for-index='i' wx:key="" >
 
@@ -31,4 +29,5 @@
     <text class="flex-cell flex-row">{{all[i].shuju4}}</text>
     
   </view>
+</view> 
 </view> 

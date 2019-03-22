@@ -1,0 +1,8 @@
+<template name="pai" >
+<block wx:for="{{item1}}" wx:for="{{item2}}" wx:key="" wx:for-index="i" >
+
+<view > {{item1[i]}}{{item2[j]}}</view>
+
+
+</block>
+</template>
