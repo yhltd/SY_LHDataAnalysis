@@ -1,6 +1,6 @@
 <!--pages/shezhi/shezhi.wxml-->
 <!-- <view wx:if="{{canIUse}}"> -->
-<!-- <view class='header'>
+    <!-- <view class='header'>
         <image class='header_image' src='/images/login.png'></image>
     </view>
  
@@ -26,26 +26,19 @@
 <button>用户管理</button>
 
 <view class="container">
-  <!-- 分割线 -->
-  <view class="divLine"></view>
+<!-- 分割线 -->
+<view class="divLine"></view>
 </view>
 
 <button>清空数据</button>
 
 <view class="container">
-  <!-- 分割线 -->
-  <view class="divLine"></view>
+<!-- 分割线 -->
+<view class="divLine"></view>
 </view>
 
 <button>设定参数</button>
-<view class="container">
-  <!-- 分割线 -->
-  <view class="divLine"></view>
-</view>
-<navigator class="txbt" url='/pages/frmadminform/frmadminform'>
-  <text class="nav-mainitem-text">管理员</text>
+<navigator class="list-item" url='./pages/frmadmin/frmadmin'>
+ <!--    <image class="item-image" src="/pages/images/personal_favorite.png"></image> -->
+    <text class="nav-mainitem-text">管理员</text>
 </navigator>
-<view class="container">
-  <!-- 分割线 -->
-  <view class="divLine"></view>
-</view>

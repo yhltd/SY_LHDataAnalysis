@@ -97,7 +97,6 @@
     font-size: 48rpx;  
     color: black;
     align-items: center;  
-   text-align: right;
 }
 /* 列表 */
 .person-list {  
@@ -150,9 +149,6 @@ display: none;
 .show{
 display: block;
 }
-.txbt{
-    border: solid 0px black;
-  text-align:center;
-}
+  
 
 
