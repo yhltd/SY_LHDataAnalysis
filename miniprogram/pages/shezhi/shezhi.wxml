@@ -38,7 +38,17 @@
 </view>
 
 <button>设定参数</button>
-<navigator class="list-item" url='/pages/adminform/index'>
+
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
+<navigator class="txbt" url='/pages/frmadminform/frmadminform'>
  <!--    <image class="item-image" src="/pages/images/personal_favorite.png"></image> -->
     <text class="nav-mainitem-text">管理员</text>
 </navigator>
+
+<view class="container">
+<!-- 分割线 -->
+<view class="divLine"></view>
+</view>
