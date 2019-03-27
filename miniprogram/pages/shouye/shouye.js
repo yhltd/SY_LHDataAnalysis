@@ -6,6 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hiddenName: true,
+    hiddenName2: true,
+    hiddenName3: true,
+    hiddenName4: true,
+    hiddenName5: true,
+    hiddenName6: true,
+
     item1: ['红桃', '方片', '黑桃', '草花'],
     item2: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
    ,
@@ -14,115 +21,175 @@ Page({
     objectMultiArray: [
       [
         {
-          id: 0,
+          id: '红桃',
           name: '红桃'
         },
         {
-          id: 1,
+          id: '方片',
           name: '方片'
         }
         ,
         {
-          id: 2,
+          id: '黑桃',
           name: '黑桃'
         }
         ,
         {
-          id: 3,
+          id: '草花',
           name: '草花'
         }
       ], [
         {
-          id: 0,
+          id: 'A',
           name: 'A'
         },
         {
-          id: 1,
+          id: '2',
           name: '2'
         },
         {
-          id: 2,
+          id: '3',
           name: '3'
         },
         {
-          id: 3,
+          id: '4',
           name: '4'
         },
         {
-          id: 4,
+          id: '5',
           name: '5'
         },
         {
-          id: 5,
+          id: '6',
           name: '6'
         },
         {
-          id: 6,
+          id: '7',
           name: '7'
         },
         {
-          id: 7,
+          id: '8',
           name: '8'
         },
         {
-          id: 8,
+          id: '9',
           name: '9'
         },
         {
-          id: 9,
+          id: '10',
           name: '10'
         },
         {
-          id: 10,
+          id: '11',
           name: 'J'
         },
         {
-          id: 11,
+          id: '12',
           name: 'Q'
         },
         {
-          id: 12,
+          id: '13',
           name: 'K'
         }
       ]
     ],
-    multiIndex: [0,  0],
+
 
 
   },
-  bindMultiPickerColumnChange: function (e) {
-    var that=this
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex,
-      
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-            
-            break;
-          
-        }
-        data.multiIndex[1] = 0;
-      
-        break;
-      
-       
-    }
-    this.setData(data);
-  },
+  
 
+  clickMe: function (e) {
+   var idd = e.target.id
+    console.log(idd)
+    this.setData({
+      hiddenName: !this.data.hiddenName
+    })
+  },
+  click: function (e) {
+    var id = e.target.id
+    console.log(id)
+    this.setData({
+      hiddenName: !this.data.hiddenName,
+      id:id,
+    })
+  },
+   clickMe2: function (e) {
+   
+    this.setData({
+      hiddenName2: !this.data.hiddenName2
+    }  )
+  },
+  click2: function (e) {
+    var id = e.target.id
+    console.log(id)
+    this.setData({
+      hiddenName2: !this.data.hiddenName2,
+      id2:id,
+    })
+  },
+  clickMe3: function (e) {
+
+    this.setData({
+      hiddenName3: !this.data.hiddenName3
+    })
+  },
+  click3: function (e) {
+    var id = e.target.id
+    console.log(id)
+    this.setData({
+      hiddenName3: !this.data.hiddenName3,
+      id3: id,
+    })
+  },
+  clickMe4: function (e) {
+
+    this.setData({
+      hiddenName4: !this.data.hiddenName4
+    })
+  },
+  click4: function (e) {
+    var id = e.target.id
+    console.log(id)
+    this.setData({
+      hiddenName4: !this.data.hiddenName4,
+      id4: id,
+    })
+  },
+  clickMe5: function (e) {
+
+    this.setData({
+      hiddenName5: !this.data.hiddenName5
+    })
+  },
+  click5: function (e) {
+    var id = e.target.id
+    console.log(id)
+    this.setData({
+      hiddenName5: !this.data.hiddenName5,
+      id5: id,
+    })
+  },
+  clickMe6: function (e) {
+
+    this.setData({
+      hiddenName6: !this.data.hiddenName6
+    })
+  },
+  click6: function (e) {
+    var id = e.target.id
+    console.log(id)
+    this.setData({
+      hiddenName6: !this.data.hiddenName6,
+      id6: id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
     var that=this
-  
+    app.editTabBar1(); //底部栏
     //定义一个字符串数组
     var obj = wx.getStorageSync("openid")
     var idd = that.data.id;
@@ -130,7 +197,17 @@ Page({
     console.log(openid)
   },
 qingkong:function(){
+  var that = this
+  that.setData({
+    id:"",
+    id2:"",
+    id3: "",
+    id4: "",
+    id5: "",
+    id6: "",
 
+
+  })
 },
 jisuan:function(){
   var zhuang1,zhuang2,zhuang3,xian1,xian2,xian3

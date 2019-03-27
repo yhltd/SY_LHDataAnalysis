@@ -16,3 +16,45 @@
   background-color: #1E90FF;
   color: white;
 }
+.tab-bar{  
+display: flex;
+flex-wrap: wrap;
+background-color: #b8b6b6;
+ position: fixed;
+ width: 100%                             
+} 
+
+/* 图*/
+.menu-item4{  
+  width: 23%;
+  text-align: center;
+  margin: 1% 1% 1% 1%;
+  background-color: #ffffff;
+  border-radius: 5px
+}  
+/* 数 */
+.menu-item1{  
+text-align: center;  
+  background-color: #ffffff;
+   margin: 1% 1% 1% 1%;
+width: 23%;
+border-radius: 5px
+}  
+.img{ 
+  width: 23px;  
+  height: 23px;  
+   
+
+}  
+.clear{  
+  clear: both;  
+} 
+._left{
+  width: 23%;
+  text-align: center;
+  margin: 1% 1% 1% 1%;
+  background-color: #ada6a6;
+  border-radius: 5px;
+  
+  
+}

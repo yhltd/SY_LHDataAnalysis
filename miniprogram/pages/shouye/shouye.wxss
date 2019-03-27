@@ -66,18 +66,21 @@ color: white;
   padding-bottom:6.5%;
 } */
 .pai3{
-  background-color: rgba(26, 26, 26, 0.397)           ;
-  height:80px;
+       
+
   width: 40%;
   margin: 0 5% 5% 5%;
   display: flex
+}
+.beimian{
+  width: 54px;
+  height: 85.5px
 }
 .paikongjian{
   display: flex
 }
 .pai4{
-  background-color: rgba(26, 26, 26, 0.397)           ;
-  height:80px;
+  display: flex;
   width: 40%;
   margin: 0 30% 5% 30%
 }
@@ -91,6 +94,16 @@ page{
 height:100%
 
 }
-.picker{
+/* .picker{
   flex-direction:  column
+} */
+.zhengmian{
+  width: 54px;
+  height: 85.5px;
+  background-color: #ffffff;
+  font-size: 30px;
+   display: flex;
+  align-items: center;
+  justify-content: center; 
 }
+ 

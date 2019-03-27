@@ -1,5 +1,21 @@
  <import src="/pages/template/pai.wxml"/> 
- <template is="pai" data="{{item1,item2}}"/>
+ <template is="tabBar" data="{{tabBar,hiddenName}}"/>
+
+ <import src="/pages/template/pai2.wxml"/> 
+ <template is="tabBar2" data="{{tabBar,hiddenName2}}"/>
+
+  <import src="/pages/template/pai3.wxml"/> 
+ <template is="tabBar3" data="{{tabBar,hiddenName3}}"/>
+
+  <import src="/pages/template/pai4.wxml"/> 
+ <template is="tabBar4" data="{{tabBar,hiddenName4}}"/>
+
+  <import src="/pages/template/pai5.wxml"/> 
+ <template is="tabBar5" data="{{tabBar,hiddenName5}}"/>
+
+  <import src="/pages/template/pai6.wxml"/> 
+ <template is="tabBar6" data="{{tabBar,hiddenName6}}"/>
+
 <view style="background-image: url('/images/all.png'); min-height:100%; background-size: 100% 100%;">
  
 
@@ -42,37 +58,54 @@
 
 <view class='paikongjian'>
 <view  class='pai3'>
- <view class="section">
+<view bindtap='clickMe'>
+ <image src='/images/背面.jpg' class='beimian'   wx:if="{{!id}}"></image>
+ <view wx:if="{{id}}" class='zhengmian'>{{id}} </view>
+ </view>
 
-  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-    <view class="picker">
-    <view>{{multiArray[0][multiIndex[0]]}}</view>
-    <view>{{multiArray[1][multiIndex[1]]}}</view>
-    </view>
-  </picker>
-</view>
-<view class="section">
 
-  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-    <view class="picker">
-    <view>{{multiArray2[0][multiIndex2[0]]}}</view>
-    <view>{{multiArray2[1][multiIndex2[1]]}}</view>
-    </view>
-  </picker>
-</view>
+<view bindtap='clickMe2'>
+ <image src='/images/背面.jpg' class='beimian'  wx:if="{{!id2}}"></image>
+<view wx:if="{{id2}}" class='zhengmian'>{{id2}} </view>
+ </view>
+
+
+
+ </view>
+<view  class='pai3'>
+<view bindtap='clickMe3'>
+ <image src='/images/背面.jpg' class='beimian' wx:if="{{!id3}}" ></image>
+ <view wx:if="{{id3}}" class='zhengmian'>{{id3}} </view>
+ </view>
+
+<view bindtap='clickMe4'>
+  <image src='/images/背面.jpg' class='beimian' wx:if="{{!id4}}"></image>
+<view wx:if="{{id4}}" class='zhengmian'>{{id4}} </view>
+ </view>
+
 
 </view>
-<view  class='pai3'></view>
 </view>
 <view class='pai2'>庄家和闲家第三张牌：</view>
-<view  class='pai4'></view>
+<view  class='pai4'>
+<view bindtap='clickMe5'>
+ <image src='/images/背面.jpg' class='beimian' wx:if="{{!id5}}"></image>
+<view wx:if="{{id5}}" class='zhengmian'>{{id5}} </view>
+ </view>
+<view bindtap='clickMe6'>
+ <image src='/images/背面.jpg' class='beimian' wx:if="{{!id6}}"></image>
+<view wx:if="{{id6}}" class='zhengmian'>{{id6}} </view>
+ </view>
+</view>
 
 <view class='button'>
-<button bindtap="qingkong">清空</button>
-<button bindtap="jisuan"> 计算胜率</button>
+<button bindtap="qingkong" hidden="{{!hiddenName||!hiddenName2||!hiddenName3||!hiddenName4||!hiddenName5||!hiddenName6}}">清空</button>
+<button bindtap="jisuan" hidden="{{!hiddenName||!hiddenName2||!hiddenName3||!hiddenName4||!hiddenName5||!hiddenName6}}"> 计算胜率</button>
 
-<button bindtap='luru'>录入</button>
+<button bindtap='luru' hidden="{{!hiddenName||!hiddenName2||!hiddenName3||!hiddenName4||!hiddenName5||!hiddenName6}}">录入</button>
 
 </view>
-<view class='bai'></view>
+
+
 </view>
+ 

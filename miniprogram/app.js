@@ -4,6 +4,8 @@ App({
     userInfo: null,
     header: {
       'Cookie': ''
+
+
     },
     appid: 'wxd747b7dd1d8f9e34', //填写微信小程序appid
     secret: '3199a980a6b595e75c27de6864fdd3a5',//填写微信小程序secret
@@ -16,7 +18,184 @@ App({
     city: "",
     country: "",
     language: "",
+    tabBar1: {
+     
+      "list": [
+        {
+          id1: '红桃',
+          "iconPath": "/images/红心.png",
+          // "clas": "menu-item4",
+          active: false
+        },
+        {
+          id1: '黑桃',
+          "iconPath": "/images/黑桃.png",
+          // "clas": "menu-item4",
+          active: true
+        },
+        {
+          id1: '方片',
+          "iconPath": "/images/方片.png",
+          // "clas": "menu-item4",
+
+          active: false
+        },
+        {
+          id1: '草花',
+          "iconPath": "/images/草花.png",
+          // "clas": "menu-item4",
+
+          active: false
+        },
+        {
+          id: 'K',
+          "text": "K",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: 'Q',
+          "text": "Q",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: 'J',
+          "text": "J",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: "10",
+          "text": "10",
+          "clas": "menu-item1",
+          active: false
+        },
+       
+        {
+          id: "9",
+          "text": "9",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: "8",
+          "text": "8",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: "7",
+          "text": "7",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: "6",
+          "text": "6",
+          "clas": "menu-item1",
+          active: false
+        },
+        
+        {
+          id: "5",
+          "text": "5",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: "4",
+          "text": "4",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: "3",
+          "text": "3",
+          "clas": "menu-item1",
+          active: false
+        },
+        {
+          id: "2",
+          "text": "2",
+          "clas": "menu-item1",
+          active: false
+        },
+       
+       
+        {
+          id: "A",
+          "text": "A",
+          "clas": "menu-item1",
+          active: false
+        },
+        // {
+        //   "text": "删除",
+        //   "clas": "menu-item3",
+        //   active: false
+        // },
+        // {
+        //   "text": "重置",
+        //   "clas": "menu-item3",
+        //   active: false
+        // },
+        // {
+        //   "text": "确认",
+        //   "clas": "menu-item3",
+        //   active: false
+        // },
+      ],
+      "position": "bottom",
+      
+        idx : 0
+    },
   },
+
+
+  editTabBar: function () {
+    //使用getCurrentPages可以获取当前加载中所有的页面对象的一个数组，数组最后一个就是当前页面。
+
+    var curPageArr = getCurrentPages();    //获取加载的页面
+    var curPage = curPageArr[curPageArr.length - 1];    //获取当前页面的对象
+    var pagePath = curPage.route;    //当前页面url
+    if (pagePath.indexOf('/') != 0) {
+      pagePath = '/' + pagePath;
+    }
+
+    var tabBar = this.globalData.tabBar;
+    for (var i = 0; i < tabBar.list.length; i++) {
+      tabBar.list[i].active = false;
+      if (tabBar.list[i].pagePath == pagePath) {
+        tabBar.list[i].active = true;    //根据页面地址设置当前页面状态    
+      }
+    }
+    curPage.setData({
+      tabBar: tabBar
+    });
+  },
+
+  editTabBar1: function () {
+    var curPageArr = getCurrentPages();
+    var curPage = curPageArr[curPageArr.length - 1];
+    var pagePath = curPage.route;
+    if (pagePath.indexOf('/') != 0) {
+      pagePath = '/' + pagePath;
+    }
+    var tabBar = this.globalData.tabBar1;
+    for (var i = 0; i < tabBar.list.length; i++) {
+      tabBar.list[i].active = false;
+      if (tabBar.list[i].pagePath == pagePath) {
+        tabBar.list[i].active = true;
+      }
+    }
+    curPage.setData({
+      tabBar: tabBar
+    });
+  },
+ 
+
+
+
   onLaunch: function () {
 
     if (!wx.cloud) {
