@@ -10,6 +10,15 @@
         <input placeholder="请输入确认密码" type='text' name='pwd2'></input>
     <text>所属机构</text>
     <input placeholder="请输入确认所属机构" />
+
+      <text>管理员</text>  
+   <radio-group class="radio-group" bindchange="AdminISradioChange">
+      <label class="radio" wx:for="{{itemsyesno}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
+      </label>
+    </radio-group>
+
+
     <text>帐号设置</text>
 
     <radio-group class="radio-group" bindchange="radioChange">

@@ -1,4 +1,7 @@
 // -// miniprogram/pages/frmadminform/frmadminform.js
+var util = require('../../utils/util.js');
+ 
+
   Page({
 
     /**
@@ -9,14 +12,27 @@
         { name: 'lock', value: '锁定' },
         { name: 'unlock', value: '正常', checked: 'true' },
 
-      ]
+      ],
+        itemsyesno: [
+          { name: 'lock', value: '是' },
+          { name: 'unlock', value: '否', checked: 'true' },
+
+      ],
+      AdminIS:null,
+      Btype: null,
+      jigoudaima: null,
+      Createdate_i:null
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      // var time = util.formatTime(new Date());
+      console.log('time')
+      this.setData({
+        Createdate_i: time
+      });
     },
 
     /**
@@ -44,7 +60,7 @@
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+   
     },
 
     /**
@@ -75,7 +91,7 @@
       //   duration: 2000
       // }) 
       const that = this;
-      var uname, pass, pass2;
+      var uname, pass, pass2, AdminIS, Btype, Createdate, jigoudaima;
       uname = e.detail.value.username,
         pass = e.detail.value.pwd,
         pass2 = e.detail.value.pwd2
@@ -95,9 +111,19 @@
         })
         return
       }
-
-
-
+//保存密码
+      const db = wx.cloud.database();
+      db.collection("SY_LHDataAnalysis_user").add({
+        data: {
+          name: uname,
+          password: pass,
+          AdminIS:'true',
+          Btype:'Normal',
+          jigoudaima:'管理者',
+          Createdate: Createdate_i
+        },
+      });
+      console.log(Createdate_i)
 
     },
 
