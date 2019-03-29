@@ -76,19 +76,19 @@ Page({
           name: '9'
         },
         {
-          id: '10',
+          id: '0',
           name: '10'
         },
         {
-          id: '11',
+          id: '0',
           name: 'J'
         },
         {
-          id: '12',
+          id: '0',
           name: 'Q'
         },
         {
-          id: '13',
+          id: '0',
           name: 'K'
         }
       ]
@@ -108,10 +108,13 @@ Page({
   },
   click: function (e) {
     var id = e.target.id
+    var idd = e.target.dataset.id
     console.log(id)
+    console.log(idd)
     this.setData({
       hiddenName: !this.data.hiddenName,
       id:id,
+      idd: idd,
     })
   },
    clickMe2: function (e) {
@@ -121,11 +124,13 @@ Page({
     }  )
   },
   click2: function (e) {
-    var id = e.target.id
-    console.log(id)
+    var id2 = e.target.id
+    var idd2 = e.target.dataset.id
+    console.log(id2)
     this.setData({
       hiddenName2: !this.data.hiddenName2,
-      id2:id,
+      id2:id2,
+      idd2: idd2,
     })
   },
   clickMe3: function (e) {
@@ -135,11 +140,13 @@ Page({
     })
   },
   click3: function (e) {
-    var id = e.target.id
-    console.log(id)
+    var id3 = e.target.id
+    var idd3 = e.target.dataset.id
+    console.log(id3)
     this.setData({
       hiddenName3: !this.data.hiddenName3,
-      id3: id,
+      id3: id3,
+      idd3:idd3
     })
   },
   clickMe4: function (e) {
@@ -149,11 +156,13 @@ Page({
     })
   },
   click4: function (e) {
-    var id = e.target.id
-    console.log(id)
+    var id4 = e.target.id
+    var idd4 = e.target.dataset.id
+    console.log(id4)
     this.setData({
       hiddenName4: !this.data.hiddenName4,
-      id4: id,
+      id4: id4,
+      idd4:idd4
     })
   },
   clickMe5: function (e) {
@@ -163,11 +172,13 @@ Page({
     })
   },
   click5: function (e) {
-    var id = e.target.id
-    console.log(id)
+    var id5 = e.target.id
+    var idd5 = e.target.dataset.id
+    console.log(id5)
     this.setData({
       hiddenName5: !this.data.hiddenName5,
-      id5: id,
+      id5: id5,
+      idd5:idd5
     })
   },
   clickMe6: function (e) {
@@ -177,11 +188,13 @@ Page({
     })
   },
   click6: function (e) {
-    var id = e.target.id
-    console.log(id)
+    var id6 = e.target.id
+    var idd6 = e.target.dataset.id
+    console.log(id6)
     this.setData({
       hiddenName6: !this.data.hiddenName6,
-      id6: id,
+      id6: id6,
+      idd6:idd6
     })
   },
   /**
@@ -210,49 +223,49 @@ qingkong:function(){
   })
 },
 jisuan:function(){
-  var zhuang1,zhuang2,zhuang3,xian1,xian2,xian3
-  zhuang1 = 1;
-  zhuang2 = 6;
-  zhuang3 = 1;
-  xian1 = 2;
-  xian2 = 5;
-  xian3 = 2;
+  // var zhuang1,zhuang2,zhuang3,xian1,xian2,xian3
+  // zhuang1 = 1;
+  // zhuang2 = 6;
+  // zhuang3 = 1;
+  // xian1 = 2;
+  // xian2 = 5;
+  // xian3 = 2;
 
 
-  if (zhuang1 + zhuang2 == 8 | zhuang1 + zhuang2 == 9)
-  {
-    if (xian1 + xian2 !== 8 | xian1 + xian2 !== 9) 
-    {
-      console.log("庄家赢")
-    }
-    if (xian1 + xian2 == 8 | xian1 + xian2 == 9) {
-      if(zhuang3>xian3 ){
+  // if (zhuang1 + zhuang2 == 8 | zhuang1 + zhuang2 == 9)
+  // {
+  //   if (xian1 + xian2 !== 8 | xian1 + xian2 !== 9) 
+  //   {
+  //     console.log("庄家赢")
+  //   }
+  //   if (xian1 + xian2 == 8 | xian1 + xian2 == 9) {
+  //     if(zhuang3>xian3 ){
 
-        console.log("庄家赢")
-      }
+  //       console.log("庄家赢")
+  //     }
 
-      if (zhuang3 < xian3) {
-        console.log("闲家赢")
-      }
-      if (zhuang3 = xian3) {
-        console.log("平局")
-      }
-    }
-   }
-  else if (xian1 + xian2 == 8 | xian1 + xian2 == 9){
-    console.log("闲家赢")
-  }
-  else if (zhuang3 > xian3) {
+  //     if (zhuang3 < xian3) {
+  //       console.log("闲家赢")
+  //     }
+  //     if (zhuang3 = xian3) {
+  //       console.log("平局")
+  //     }
+  //   }
+  //  }
+  // else if (xian1 + xian2 == 8 | xian1 + xian2 == 9){
+  //   console.log("闲家赢")
+  // }
+  // else if (zhuang3 > xian3) {
 
-    console.log("庄家赢")
-  }
-  else if (zhuang3 < xian3) {
+  //   console.log("庄家赢")
+  // }
+  // else if (zhuang3 < xian3) {
 
-    console.log("闲家赢")
-  }
-  else  {
-    console.log("平局")
-  }
+  //   console.log("闲家赢")
+  // }
+  // else  {
+  //   console.log("平局")
+  // }
   
 
   
@@ -311,15 +324,76 @@ jisuan:function(){
 
   },
   luru:function() {
+    var shuju7
     var that =this;
-    db.collection('SY_LHDataAnalysis_shuju').add({
+    
+    const db = wx.cloud.database();
+    if (that.data.id != null & that.data.id2 !=null & that.data.id3 != null & that.data.id4 != null )
+    {
+
+      var zhuang1, zhuang2, zhuang3, xian1, xian2, xian3
+      zhuang1 = that.data.id;
+      zhuang2 = that.data.id2;
+      zhuang3 = that.data.id5;
+      xian1 = that.data.id3;
+      xian2 = that.data.id4;
+      xian3 = that.data.id6;
+
+
+      if (zhuang1 + zhuang2 == 8 | zhuang1 + zhuang2 == 9) {
+        if (xian1 + xian2 !== 8 | xian1 + xian2 !== 9) {
+          console.log("庄家赢")
+          shuju7 = "庄"
+        }
+        if (xian1 + xian2 == 8 | xian1 + xian2 == 9) {
+          if (zhuang3 > xian3) {
+
+            console.log("庄家赢")
+            shuju7 = "庄"
+          }
+
+          if (zhuang3 < xian3) {
+            console.log("闲家赢")
+            shuju7 = "闲"
+          }
+          if (zhuang3 = xian3) {
+            console.log("平局")
+            shuju7 = "平"
+          }
+        }
+      }
+      else if (xian1 + xian2 == 8 | xian1 + xian2 == 9) {
+        console.log("闲家赢")
+        shuju7 = "闲"
+      }
+      else if (zhuang3 > xian3) {
+
+        console.log("庄家赢")
+        shuju7 = "庄"
+      }
+      else if (zhuang3 < xian3) {
+
+        console.log("闲家赢")
+        shuju7 = "闲"
+      }
+      else {
+        console.log("平局")
+        shuju7 = "平"
+      }
+
+
+
+     db.collection('SY_LHDataAnalysis_shuju').add({
      
       data: {
-        // openid:openid,
-        // shuju1:shuju1,
-        // shuju2: shuju2,
-        // shuju3: shuju3,
-        // shuju4: shuju4,
+       
+        shuju1:that.data.idd,
+        shuju2: that.data.idd2,
+        shuju3: that.data.idd3,
+        shuju4: that.data.idd4,
+        shuju5: that.data.idd5,
+        shuju6: that.data.idd6,
+        shuju7: shuju7
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
@@ -330,8 +404,8 @@ jisuan:function(){
         wx.showToast({
           title: '录入成功',
         })
+       }
+         })
     }
-      })
-     
-      }
+   }
 })

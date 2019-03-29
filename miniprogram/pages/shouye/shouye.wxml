@@ -60,13 +60,13 @@
 <view  class='pai3'>
 <view bindtap='clickMe'>
  <image src='/images/背面.jpg' class='beimian'   wx:if="{{!id}}"></image>
- <view wx:if="{{id}}" class='zhengmian'>{{id}} </view>
+ <view wx:if="{{id}}" class='zhengmian'>{{idd}} </view>
  </view>
 
 
 <view bindtap='clickMe2'>
  <image src='/images/背面.jpg' class='beimian'  wx:if="{{!id2}}"></image>
-<view wx:if="{{id2}}" class='zhengmian'>{{id2}} </view>
+<view wx:if="{{id2}}" class='zhengmian'>{{idd2}} </view>
  </view>
 
 
@@ -75,12 +75,12 @@
 <view  class='pai3'>
 <view bindtap='clickMe3'>
  <image src='/images/背面.jpg' class='beimian' wx:if="{{!id3}}" ></image>
- <view wx:if="{{id3}}" class='zhengmian'>{{id3}} </view>
+ <view wx:if="{{id3}}" class='zhengmian'>{{idd3}} </view>
  </view>
 
 <view bindtap='clickMe4'>
   <image src='/images/背面.jpg' class='beimian' wx:if="{{!id4}}"></image>
-<view wx:if="{{id4}}" class='zhengmian'>{{id4}} </view>
+<view wx:if="{{id4}}" class='zhengmian'>{{idd4}} </view>
  </view>
 
 
@@ -90,11 +90,11 @@
 <view  class='pai4'>
 <view bindtap='clickMe5'>
  <image src='/images/背面.jpg' class='beimian' wx:if="{{!id5}}"></image>
-<view wx:if="{{id5}}" class='zhengmian'>{{id5}} </view>
+<view wx:if="{{id5}}" class='zhengmian'>{{idd5}} </view>
  </view>
 <view bindtap='clickMe6'>
  <image src='/images/背面.jpg' class='beimian' wx:if="{{!id6}}"></image>
-<view wx:if="{{id6}}" class='zhengmian'>{{id6}} </view>
+<view wx:if="{{id6}}" class='zhengmian'>{{idd6}} </view>
  </view>
 </view>
 

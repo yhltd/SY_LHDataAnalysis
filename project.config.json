@@ -2,15 +2,16 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"appid": "wxd747b7dd1d8f9e34",
 	"projectname": "SY_LHDataAnalysis",
-	"libVersion": "2.6.2",
+	"libVersion": "2.6.4",
 	"condition": {
 		"search": {
 			"current": -1,
