@@ -49,24 +49,28 @@ App({
         },
         {
           id: 'K',
+          idd:"13",
           "text": "K",
           "clas": "menu-item1",
           active: false
         },
         {
           id: 'Q',
+          idd: "12",
           "text": "Q",
           "clas": "menu-item1",
           active: false
         },
         {
           id: 'J',
+          idd: "11",
           "text": "J",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "10",
+          idd: "10",
           "text": "10",
           "clas": "menu-item1",
           active: false
@@ -74,24 +78,28 @@ App({
        
         {
           id: "9",
+          idd: "9",
           "text": "9",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "8",
+          idd: "8",
           "text": "8",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "7",
+          idd: "7",
           "text": "7",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "6",
+          idd: "6",
           "text": "6",
           "clas": "menu-item1",
           active: false
@@ -99,24 +107,28 @@ App({
         
         {
           id: "5",
+          idd: "5",
           "text": "5",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "4",
+          idd: "4",
           "text": "4",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "3",
+          idd: "3",
           "text": "3",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "2",
+          idd: "2",
           "text": "2",
           "clas": "menu-item1",
           active: false
@@ -125,6 +137,7 @@ App({
        
         {
           id: "A",
+          idd: "1",
           "text": "A",
           "clas": "menu-item1",
           active: false

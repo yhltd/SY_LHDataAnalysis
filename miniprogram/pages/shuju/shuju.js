@@ -1,4 +1,5 @@
 // pages/shuju/shuju.js
+var app = getApp()
 Page({
 
   /**
@@ -18,7 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-   
+   var openid=app.globalData.openid
+    console.log(openid)
       }
   ,
 
