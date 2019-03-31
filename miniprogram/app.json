@@ -1,5 +1,6 @@
 {
   "pages": [
+      "pages/login/login",
     "pages/shouye/shouye",
     "pages/index/index",
     "pages/userConsole/userConsole",
@@ -12,13 +13,15 @@
     "pages/shezhi/shezhi",
     "pages/yonghuguangli/yonghuguanli",
     "pages/shedingcanshu/shedingcanshu",
-     "pages/adminform/index"
+    "pages/adminform/index",
+    "pages/frmadminindex/frmadminindex",
+    "pages/frmedituser/frmedituser"
   ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
-   "navigationBarBackgroundColor": "#262626",
-    "navigationBarTitleText": "胜率运算",
+    "navigationBarBackgroundColor": "#262626",
+    "navigationBarTitleText": "SY模拟计算器",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -27,7 +30,8 @@
     "borderStyle": "white",
     "backgroundColor": "#eeeeee",
     "list": [
-      {"iconPath": "images/shouye.png",
+      {
+        "iconPath": "images/shouye.png",
         "selectedIconPath": "images/shouyelv.png",
         "pagePath": "pages/shouye/shouye",
         "text": "首页"
@@ -39,10 +43,9 @@
         "text": "数据"
       },
       {
-        
         "iconPath": "images/yonghu.png",
         "selectedIconPath": "images/yonghulv.png",
-    "pagePath": "pages/shezhi/shezhi",
+        "pagePath": "pages/shezhi/shezhi",
         "text": "设置"
       }
     ]

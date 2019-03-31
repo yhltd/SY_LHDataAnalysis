@@ -21,18 +21,20 @@ var util = require('../../utils/util.js');
       AdminIS:null,
       Btype: null,
       jigoudaima: null,
-      Createdate_i:null
+      Createdate_i:""
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      // var time = util.formatTime(new Date());
-      console.log('time')
+      var that = this;
+       var time = util.formatTime(new Date());
+   
       this.setData({
         Createdate_i: time
       });
+      console.log(that.data.Createdate_i)
     },
 
     /**
@@ -94,7 +96,8 @@ var util = require('../../utils/util.js');
       var uname, pass, pass2, AdminIS, Btype, Createdate, jigoudaima;
       uname = e.detail.value.username,
         pass = e.detail.value.pwd,
-        pass2 = e.detail.value.pwd2
+        pass2 = e.detail.value.pwd2,
+        jigoudaima = e.detail.value.jigoudaima
       if (pass2 != pass) {
         wx.showToast({
           title: '两次密码不一致，请修改',
@@ -112,18 +115,26 @@ var util = require('../../utils/util.js');
         return
       }
 //保存密码
+      var time = util.formatTime(new Date());
+
       const db = wx.cloud.database();
+ 
+      console.log(that.data.Btype)
       db.collection("SY_LHDataAnalysis_user").add({
         data: {
           name: uname,
           password: pass,
-          AdminIS:'true',
-          Btype:'Normal',
-          jigoudaima:'管理者',
-          Createdate: Createdate_i
+          AdminIS: that.data.AdminIS,
+          Btype: that.data.Btype,
+          jigoudaima: jigoudaima,
+          Createdate: time
         },
       });
-      console.log(Createdate_i)
+      wx.showToast({
+        title: '创建成功，请返回',
+        icon: 'success',
+        duration: 3000
+      })
 
     },
 
@@ -134,6 +145,15 @@ var util = require('../../utils/util.js');
     },
 
     radioChange(e) {
-      console.log('radio发生change事件，携带value值为：', e.detail.value)
+      //  console.log('radio发生change事件，携带value值为：', e.detail.value)
+      this.setData({
+        Btype: e.detail.value
+      });
+    },
+    AdminISradioChange(e) {
+      // console.log('radio发生change事件，携带value值为：', e.detail.value)
+      this.setData({
+        AdminIS: e.detail.value
+      });
     }
   })
