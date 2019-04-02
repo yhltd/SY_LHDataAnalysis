@@ -121,3 +121,33 @@ page {
   color: #ff5722;
 }
 
+.shop_item  {
+  font-size: 30rpx;
+  color: #555
+}
+.shop_itemactive  {
+  font-size: 30rpx;
+  color: red;
+}
+.shop {
+  background: white
+}
+.shop_list {
+  display: flex;
+  padding: 30rpx 40rpx;
+  justify-content: space-around;
+}
+.green {
+  color: #09bb07;
+}
+
+.bc_green {
+  background-color: #09bb07;
+}
+
+.white {
+  color: #fff;
+}
+.radio-group radio {
+  display: none;
+}

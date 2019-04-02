@@ -41,14 +41,15 @@
       </view>
 
 
-      <view>
+      <view bindtap="navgiate2" data-page="askList/askList?type=PatAlive" data-pro="put">
         <image src="/images/039aca64ea8386f7b6f814cfad13c979.png"></image>
-        <text>编辑</text>
+        <navigator url='/pages/frmedituser/frmedituser'>
+          <text>编辑</text>
+        </navigator>
       </view>
     </view>
 
   </view>
-
   <!--按时间分类-->
   <view class="hs20"></view>
   <view>
@@ -56,10 +57,22 @@
     <view class="list-title-right">状态</view>
     <view class="clear"></view>
   </view>
-
-  <view wx:key="{{listAll}}" wx:for="{{listAll}}" bindtap="bindAll" data-id="{{item.DateTime}}">
+  <!-- <view wx:key="{{listAll}}" wx:for="{{listAll}}" bindtap="bindAll" data-id="{{item.DateTime}}">
     <view class="list-content-left">{{item.name}}</view>
     <view class="list-content-right">{{item.Btype}}</view>
     <view class="clear"></view>
-  </view>
+  </view> -->
+
+  <block wx:for="{{listAll}}" wx:key="*this.index">
+    <view data-index="{{index}}" data-name="{{item._id}}" class="{{item.checked==true?'red bc':'bc'}}" bindtap='select'>
+      <view class="list-content-left">{{item.name}}</view>
+      <view class="list-content-right">{{item.Btype}}</view>
+
+    </view>
+
+  </block>
+  <!-- <button bindtap='selectAll'>全选</button> -->
+  <!-- <view class='shop_list'>
+    <view class="shop_item{{item == shopitem?'active':''}}" wx:for="{{listAll}}" bindtap='bindshop' data-classify="{{item}}">{{item.name}}</view>
+  </view> -->
 </view>

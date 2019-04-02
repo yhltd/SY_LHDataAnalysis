@@ -14,7 +14,19 @@ Page({
       tag: "查看",
       icon: "tuina color2"
     }],
-    searchDoctor: []
+    searchDoctor: [],
+    selectnameValue:'',
+    // list: [
+    //   { id: 1, name: 1, checked: false },
+    //   { id: 2, name: 2, checked: false },
+    //   { id: 3, name: 3, checked: false },
+    //   { id: 4, name: 4, checked: false },
+    // ],
+    select: [],
+    listAll:[],
+    shop: ['默认排序', '最新上拍', '即将结拍'],
+    shopitem: 'name1' 
+ 
   },
 
   /**
@@ -42,7 +54,7 @@ Page({
    */
   onShow: function() {
     var that = this;
-    var listAll = [];
+      var listAll = [];
     const db = wx.cloud.database();
     db.collection('SY_LHDataAnalysis_user').get({
       success(res) {
@@ -130,10 +142,56 @@ Page({
     });
 
   },
+  navgiate2: function () {
+    console.log(this.data.select)
+    wx.navigateTo({
+      url: "/pages/frmedituser/frmedituser?_id=" + this.data.select
+    });
+
+  },
   bindAll:function(e){
 
 
   },
+  //单选
+  select: function (e) {
+    let selectValue = e.currentTarget.dataset.name
+    let index = e.currentTarget.dataset.index;
+    let listAll = this.data.listAll
+    let newli = 'listAll[' + index + '].checked';
+    this.setData({
+      [newli]: !this.data.listAll[index].checked,
+      
+    })
+    let li2 = this.data.listAll[index].checked
+    if (li2 == false) {
+      for (let i in this.data.select) {
+        if (this.data.select[i] == selectValue) {
+          this.data.select.splice(i, 1);
+        }
+      }
+    } else {
+      this.data.select.push(selectValue);
+    }
+    this.setData({
+      shopitem: this.data.select,
+    })
+      //  console.log(this.data.select)
+    console.log(this.data.shopitem)
+   
+  },
+  bindshop: function (event) {
+    var classify = event.currentTarget.dataset.classify;
+    var that = this;
+
+    console.log(classify)  //输出的结果就是你点击的
+    this.setData({
+      shopitem: classify,  //更新
+
+
+    })
+  },
+ 
   /**
    * 用户点击右上角分享
    */

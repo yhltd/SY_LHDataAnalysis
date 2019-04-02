@@ -91,9 +91,9 @@ Page({
       key: 'IsLogin',
       success: function (res) {
         if (res.data) {
-          // wx.switchTab({
-          //   url: '../shouye/shouye'
-          // })
+          wx.switchTab({
+            url: '../shouye/shouye'
+          })
         }
       }
     })
