@@ -145,7 +145,8 @@ Page({
   navgiate2: function () {
     console.log(this.data.select)
     wx.navigateTo({
-      url: "/pages/frmedituser/frmedituser?_id=" + this.data.select
+      url: "/pages/frmedituser/frmedituser?_id=" + this.data.selectnameValue
+      // this.data.select
     });
 
   },
@@ -158,10 +159,12 @@ Page({
     let selectValue = e.currentTarget.dataset.name
     let index = e.currentTarget.dataset.index;
     let listAll = this.data.listAll
+    console.log('ss'+selectValue);
+
     let newli = 'listAll[' + index + '].checked';
     this.setData({
       [newli]: !this.data.listAll[index].checked,
-      
+      selectnameValue:selectValue
     })
     let li2 = this.data.listAll[index].checked
     if (li2 == false) {

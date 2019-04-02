@@ -13,7 +13,9 @@
 .userinfo-nickname {
   color: #aaa;
 }
-
+.button-hover {
+  background-color: red;
+}
 page{
   background-color: #ddd;
 }

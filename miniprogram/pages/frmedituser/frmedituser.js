@@ -9,33 +9,33 @@ Page({
    */
   data: {
     items: [{
-        name: 'lock',
+      name: '锁定',
         value: '锁定'
       },
       {
-        name: 'unlock',
+        name: '正常',
         value: '正常',
         checked: 'true'
       },
 
     ],
     itemsyesno: [{
-        name: 'lock',
+      name: '是',
         value: '是'
       },
       {
-        name: 'unlock',
-        value: '否',
-        checked: 'true'
+        name: '否',
+        value: '否'
+        // checked: 'true'
       },
 
     ],
     listAll: [],
-    AdminIS: null,
-    Btype: null,
-    jigoudaima: null,
+    AdminIS: '',
+    Btype: '',
+    jigoudaima: '',
     Createdate_i: "",
-    editid: []
+    editid: ''
   },
 
   /**
@@ -57,10 +57,12 @@ Page({
         //  listAll.push(res.data)
         that.setData({
             // listAll: listAll[0]
-            listAll: res.data
+            listAll: res.data,
+            // AdminIS: listAll.AdminIS,
+            // Btype: listAll.Btype
           },
           // res.data 包含该记录的数据
-          console.log('111'),
+
           console.log(that.data.listAll)
         )
       }
@@ -150,48 +152,35 @@ Page({
     }
     //保存密码
     var time = util.formatTime(new Date());
-  
+
     const db = wx.cloud.database();
     db.collection('SY_LHDataAnalysis_user').where({
 
-        name: "name1"
+        name: uname
       })
       .get({
         success(res) {
-          console.log('111'+res.data[0]._id)
+          console.log('111' + res.data[0]._id)
           db.collection('SY_LHDataAnalysis_user').doc(res.data[0]._id).update({
             // data 传入需要局部更新的数据
             data: {
-              // 表示将 done 字段置为 true
-              name: 1
+              name: uname,
+              password: pass,
+              AdminIS: that.data.AdminIS,
+              Btype: that.data.Btype,
+              jigoudaima: jigoudaima,
+              Createdate: time
             },
-            success(res) {
-              console.log(res.data)
-            }
+            success: res => {
+              wx.showToast({
+                title: '更新完成',
+              })
+            },
           })
         }
       }),
       console.log(pass)
-    // db.collection('SY_LHDataAnalysis_user').doc('XJuFPYnnuWjci0CF').update({
-    //   data: {
-    //     name: uname,
-    //     password: pass,
-    //     AdminIS: that.data.AdminIS,
-    //     Btype: that.data.Btype,
-    //     jigoudaima: jigoudaima,
-    //     Createdate: time
-    //   },
-    //   success: res => {
-    //     wx.showToast({
-    //       title: '更新完成',
-    //     })
-    //   },
-    // });
-    // wx.showToast({
-    //   title: '创建成功，请返回',
-    //   icon: 'success',
-    //   duration: 3000
-    // })
+
 
   },
 
@@ -200,17 +189,35 @@ Page({
 
     })
   },
-
+  btipdate: function() {
+    const db = wx.cloud.database();
+    console.log(1)
+    db.collection('SY_LHDataAnalysis_user').doc('XJuFPYnnuWjci0CF').update({
+      data: {
+        AdminIS: 'no',
+      },
+    })
+    console.log(2)
+  },
   radioChange(e) {
-    //  console.log('radio发生change事件，携带value值为：', e.detail.value)
+    var that = this;
+    console.log('2radio发生change事件，携带value值为：', e.detail.value)
     this.setData({
-      Btype: e.detail.value
-    });
+        Btype: e.detail.value
+      },
+      console.log(this.data.Btype)
+    );
   },
   AdminISradioChange(e) {
-    // console.log('radio发生change事件，携带value值为：', e.detail.value)
-    this.setData({
-      AdminIS: e.detail.value
-    });
+    var that = this;
+    console.log('1radio发生change事件，携带value值为：', e.detail.value)
+
+    that.setData({
+        AdminIS: e.detail.value
+
+      },
+      console.log(that.data.AdminIS),
+      console.log(e.detail.value)
+    );
   }
 })
