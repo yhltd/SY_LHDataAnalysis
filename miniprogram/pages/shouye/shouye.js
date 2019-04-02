@@ -129,6 +129,13 @@ Page({
    */
   onLoad: function () {
     var that=this
+
+    var adminis = app.globalData.adminis
+    var finduser = app.globalData.finduser
+
+    console.log(adminis)
+    console.log(finduser)
+
     app.editTabBar1(); //底部栏
     //定义一个字符串数组
     var obj = wx.getStorageSync("openid")
@@ -210,7 +217,7 @@ jisuan:function(){
   luru:function() {
     var shuju7='0'
     var that =this;
-    
+    var finduser = app.globalData.finduser
     const db = wx.cloud.database();
     
      var zhuang1, zhuang2, zhuang3, xian1, xian2, xian3
@@ -250,14 +257,7 @@ jisuan:function(){
         console.log("闲家赢")
         shuju7 = "闲"
       }
-      else if (zhuang1 + zhuang2 > xian1 + xian2 ) {
-        console.log("庄家赢")
-        shuju7 = "庄"
-      }
-      else if (zhuang1 + zhuang2 < xian1 + xian2) {
-        console.log("闲家赢")
-        shuju7 = "闲" 
-      }
+      
       else if (zhuang1 + zhuang2 == xian1 + xian2 && zhuang3 == xian3) {
         console.log("平局")
         shuju7 = "平"
@@ -273,7 +273,11 @@ jisuan:function(){
         console.log("闲家赢")
         shuju7 = "闲"
       }
-     
+      else if (zhuang3 == xian3) {
+
+        console.log("平局")
+        shuju7 = "平"
+      }
 
 
 
@@ -287,7 +291,8 @@ jisuan:function(){
         shuju4: that.data.idd4,
         shuju5: that.data.idd5,
         shuju6: that.data.idd6,
-        shuju7: shuju7
+        shuju7: shuju7,
+       finduser : finduser
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id

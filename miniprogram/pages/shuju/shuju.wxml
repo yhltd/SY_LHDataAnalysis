@@ -30,7 +30,7 @@
     <text class="flex-cell flex-row">{{all[i].shuju5}}</text>
 <text class="flex-cell flex-row">{{all[i].shuju6}}</text>
     <text class="flex-cell flex-row">{{all[i].shuju7}}</text>
-    
+    <!-- <button bindtap='shan' class="flex-cell flex-row">删</button> -->
   </view>
 </view> 
 </view> 

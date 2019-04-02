@@ -1,8 +1,8 @@
 // miniprogram/pages/login/login.js
 // const requestUrl = require('../../config').requestUrl
-
+const app = getApp();
 var login = function (that) {
-  var finduser ,passwod;
+  var finduser, passwod, adminis;
   var listAll = [];
   const db = wx.cloud.database();
   db.collection('SY_LHDataAnalysis_user').where({
@@ -21,6 +21,11 @@ var login = function (that) {
        
       finduser = listAll[0].name,
         passwod = listAll[0].password,
+        adminis=listAll[0].AdminIS,
+        app.globalData.finduser = finduser,
+        app.globalData.passwod = passwod,
+        app.globalData.adminis = adminis,
+        console.log(adminis),
         console.log(finduser),
         console.log(passwod)
       )
@@ -91,9 +96,9 @@ Page({
       key: 'IsLogin',
       success: function (res) {
         if (res.data) {
-          wx.switchTab({
-            url: '../shouye/shouye'
-          })
+          // wx.switchTab({
+          //   url: '../shouye/shouye'
+          // })
         }
       }
     })
