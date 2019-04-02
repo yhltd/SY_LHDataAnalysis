@@ -1,6 +1,6 @@
 {
   "pages": [
-      "pages/login/login",
+    "pages/login/login",
     "pages/shouye/shouye",
     "pages/index/index",
     "pages/userConsole/userConsole",
@@ -15,7 +15,8 @@
     "pages/shedingcanshu/shedingcanshu",
     "pages/adminform/index",
     "pages/frmadminindex/frmadminindex",
-    "pages/frmedituser/frmedituser"
+    "pages/frmedituser/frmedituser",
+    "pages/frmgerenxinxi/frmgerenxinxi"
   ],
   "window": {
     "backgroundColor": "#ffffff",
