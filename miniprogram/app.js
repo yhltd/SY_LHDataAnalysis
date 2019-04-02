@@ -21,56 +21,56 @@ App({
     tabBar1: {
      
       "list": [
-        {
-          id1: '红桃',
-          "iconPath": "/images/红心.png",
-          // "clas": "menu-item4",
-          active: false
-        },
-        {
-          id1: '黑桃',
-          "iconPath": "/images/黑桃.png",
-          // "clas": "menu-item4",
-          active: true
-        },
-        {
-          id1: '方片',
-          "iconPath": "/images/方片.png",
-          // "clas": "menu-item4",
+        // {
+        //   id1: '红桃',
+        //   "iconPath": "/images/红心.png",
+        //   // "clas": "menu-item4",
+        //   active: false
+        // },
+        // {
+        //   id1: '黑桃',
+        //   "iconPath": "/images/黑桃.png",
+        //   // "clas": "menu-item4",
+        //   active: true
+        // },
+        // {
+        //   id1: '方片',
+        //   "iconPath": "/images/方片.png",
+        //   // "clas": "menu-item4",
 
-          active: false
-        },
-        {
-          id1: '草花',
-          "iconPath": "/images/草花.png",
-          // "clas": "menu-item4",
+        //   active: false
+        // },
+        // {
+        //   id1: '草花',
+        //   "iconPath": "/images/草花.png",
+        //   // "clas": "menu-item4",
 
-          active: false
-        },
+        //   active: false
+        // },
         {
           id: 'K',
-          idd:"13",
+          idd:0,
           "text": "K",
           "clas": "menu-item1",
           active: false
         },
         {
           id: 'Q',
-          idd: "12",
+          idd: 0,
           "text": "Q",
           "clas": "menu-item1",
           active: false
         },
         {
           id: 'J',
-          idd: "11",
+          idd: 0,
           "text": "J",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "10",
-          idd: "10",
+          idd: 0,
           "text": "10",
           "clas": "menu-item1",
           active: false
@@ -78,28 +78,28 @@ App({
        
         {
           id: "9",
-          idd: "9",
+          idd: 9,
           "text": "9",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "8",
-          idd: "8",
+          idd: 8,
           "text": "8",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "7",
-          idd: "7",
+          idd: 7,
           "text": "7",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "6",
-          idd: "6",
+          idd: 6,
           "text": "6",
           "clas": "menu-item1",
           active: false
@@ -107,28 +107,28 @@ App({
         
         {
           id: "5",
-          idd: "5",
+          idd: 5,
           "text": "5",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "4",
-          idd: "4",
+          idd: 4,
           "text": "4",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "3",
-          idd: "3",
+          idd: 3,
           "text": "3",
           "clas": "menu-item1",
           active: false
         },
         {
           id: "2",
-          idd: "2",
+          idd: 2,
           "text": "2",
           "clas": "menu-item1",
           active: false
@@ -137,7 +137,7 @@ App({
        
         {
           id: "A",
-          idd: "1",
+          idd: 1,
           "text": "A",
           "clas": "menu-item1",
           active: false

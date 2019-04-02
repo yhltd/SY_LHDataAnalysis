@@ -12,92 +12,19 @@ Page({
     hiddenName4: true,
     hiddenName5: true,
     hiddenName6: true,
-
-    item1: ['红桃', '方片', '黑桃', '草花'],
-    item2: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-   ,
-   index: 0,
-    multiArray: [['红桃', '方片', '黑桃', '草花'], ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']],
-    objectMultiArray: [
-      [
-        {
-          id: '红桃',
-          name: '红桃'
-        },
-        {
-          id: '方片',
-          name: '方片'
-        }
-        ,
-        {
-          id: '黑桃',
-          name: '黑桃'
-        }
-        ,
-        {
-          id: '草花',
-          name: '草花'
-        }
-      ], [
-        {
-          id: 'A',
-          name: 'A'
-        },
-        {
-          id: '2',
-          name: '2'
-        },
-        {
-          id: '3',
-          name: '3'
-        },
-        {
-          id: '4',
-          name: '4'
-        },
-        {
-          id: '5',
-          name: '5'
-        },
-        {
-          id: '6',
-          name: '6'
-        },
-        {
-          id: '7',
-          name: '7'
-        },
-        {
-          id: '8',
-          name: '8'
-        },
-        {
-          id: '9',
-          name: '9'
-        },
-        {
-          id: '0',
-          name: '10'
-        },
-        {
-          id: '0',
-          name: 'J'
-        },
-        {
-          id: '0',
-          name: 'Q'
-        },
-        {
-          id: '0',
-          name: 'K'
-        }
-      ]
-    ],
-
-
-
+    idd:0,
+    idd2: 0,
+    idd3: 0,
+    idd4: 0,
+    idd5: 0,
+    idd6: 0,
+    id: 0,
+    id2: 0,
+    id3: 0,
+    id4: 0,
+    id5: 0,
+    id6: 0,
   },
-  
 
   clickMe: function (e) {
    var idd = e.target.id
@@ -223,49 +150,6 @@ qingkong:function(){
   })
 },
 jisuan:function(){
-  // var zhuang1,zhuang2,zhuang3,xian1,xian2,xian3
-  // zhuang1 = 1;
-  // zhuang2 = 6;
-  // zhuang3 = 1;
-  // xian1 = 2;
-  // xian2 = 5;
-  // xian3 = 2;
-
-
-  // if (zhuang1 + zhuang2 == 8 | zhuang1 + zhuang2 == 9)
-  // {
-  //   if (xian1 + xian2 !== 8 | xian1 + xian2 !== 9) 
-  //   {
-  //     console.log("庄家赢")
-  //   }
-  //   if (xian1 + xian2 == 8 | xian1 + xian2 == 9) {
-  //     if(zhuang3>xian3 ){
-
-  //       console.log("庄家赢")
-  //     }
-
-  //     if (zhuang3 < xian3) {
-  //       console.log("闲家赢")
-  //     }
-  //     if (zhuang3 = xian3) {
-  //       console.log("平局")
-  //     }
-  //   }
-  //  }
-  // else if (xian1 + xian2 == 8 | xian1 + xian2 == 9){
-  //   console.log("闲家赢")
-  // }
-  // else if (zhuang3 > xian3) {
-
-  //   console.log("庄家赢")
-  // }
-  // else if (zhuang3 < xian3) {
-
-  //   console.log("闲家赢")
-  // }
-  // else  {
-  //   console.log("平局")
-  // }
   
 
   
@@ -324,28 +208,28 @@ jisuan:function(){
 
   },
   luru:function() {
-    var shuju7
+    var shuju7='0'
     var that =this;
     
     const db = wx.cloud.database();
-    if (that.data.id != null & that.data.id2 !=null & that.data.id3 != null & that.data.id4 != null )
-    {
-
-      var zhuang1, zhuang2, zhuang3, xian1, xian2, xian3
-      zhuang1 = that.data.id;
-      zhuang2 = that.data.id2;
-      zhuang3 = that.data.id5;
-      xian1 = that.data.id3;
-      xian2 = that.data.id4;
-      xian3 = that.data.id6;
-
-
-      if (zhuang1 + zhuang2 == 8 | zhuang1 + zhuang2 == 9) {
-        if (xian1 + xian2 !== 8 | xian1 + xian2 !== 9) {
+    
+     var zhuang1, zhuang2, zhuang3, xian1, xian2, xian3
+    zhuang1 = parseInt(that.data.id);
+    zhuang2 = parseInt(that.data.id2);
+    zhuang3 = parseInt(that.data.id5);
+    xian1 = parseInt(that.data.id3);
+    xian2 = parseInt(that.data.id4);
+    xian3 = parseInt(that.data.id6);
+    console.log(zhuang1 + zhuang2)
+    console.log(xian1 + xian2)
+    console.log(zhuang3)
+    console.log(xian3)
+      if (zhuang1 + zhuang2 == 8 || zhuang1 + zhuang2 == 9) {
+        if (xian1 + xian2 !== 8 || xian1 + xian2 !== 9) {
           console.log("庄家赢")
           shuju7 = "庄"
         }
-        if (xian1 + xian2 == 8 | xian1 + xian2 == 9) {
+        if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
           if (zhuang3 > xian3) {
 
             console.log("庄家赢")
@@ -362,10 +246,23 @@ jisuan:function(){
           }
         }
       }
-      else if (xian1 + xian2 == 8 | xian1 + xian2 == 9) {
+      else if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
         console.log("闲家赢")
         shuju7 = "闲"
       }
+      else if (zhuang1 + zhuang2 > xian1 + xian2 ) {
+        console.log("庄家赢")
+        shuju7 = "庄"
+      }
+      else if (zhuang1 + zhuang2 < xian1 + xian2) {
+        console.log("闲家赢")
+        shuju7 = "闲" 
+      }
+      else if (zhuang1 + zhuang2 == xian1 + xian2 && zhuang3 == xian3) {
+        console.log("平局")
+        shuju7 = "平"
+      }
+
       else if (zhuang3 > xian3) {
 
         console.log("庄家赢")
@@ -376,10 +273,7 @@ jisuan:function(){
         console.log("闲家赢")
         shuju7 = "闲"
       }
-      else {
-        console.log("平局")
-        shuju7 = "平"
-      }
+     
 
 
 
@@ -406,6 +300,6 @@ jisuan:function(){
         })
        }
          })
-    }
+    this.qingkong()
    }
 })
