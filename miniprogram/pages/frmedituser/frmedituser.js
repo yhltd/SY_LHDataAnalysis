@@ -160,7 +160,7 @@ Page({
       })
       .get({
         success(res) {
-          console.log('111' + res.data[0]._id)
+           
           db.collection('SY_LHDataAnalysis_user').doc(res.data[0]._id).update({
             // data 传入需要局部更新的数据
             data: {
