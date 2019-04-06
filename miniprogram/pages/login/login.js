@@ -92,16 +92,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    var that = this;
+    app.globalData.finduser = 'name1'
     wx.getStorage({
       key: 'IsLogin',
       success: function (res) {
         if (res.data) {
-          // wx.switchTab({
-          //   url: '../shouye/shouye'
-          // })
+        
+          wx.switchTab({
+            url: '../shouye/shouye'
+          })
         }
       }
     })
+    
   },
 
   /**

@@ -1,5 +1,20 @@
 // pages/shouye/shouye.js
-var app = getApp()
+var util = require('../../utils/util.js');
+var app = getApp();
+var showmsg = '';
+var showToastAuto = function(that) {
+  var self = that;
+  wx.showToast({
+    title: '闲赢概率：' + String(showmsg) + '%',
+    image: '/images/btn.png',
+    success: function(res) {
+      self.setData({
+        msg: '消息提示消失！'
+      });
+    }
+  })
+}
+
 Page({
 
   /**
@@ -12,7 +27,7 @@ Page({
     hiddenName4: true,
     hiddenName5: true,
     hiddenName6: true,
-    idd:0,
+    idd: 0,
     idd2: 0,
     idd3: 0,
     idd4: 0,
@@ -24,111 +39,120 @@ Page({
     id4: 0,
     id5: 0,
     id6: 0,
-  },
+    listAll: [],
+    msg: ''
 
-  clickMe: function (e) {
-   var idd = e.target.id
+  },
+  compare: function(property) {
+    return function(a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      return value2 - value1;
+    }
+  },
+  clickMe: function(e) {
+    var idd = e.target.id
     console.log(idd)
     this.setData({
       hiddenName: !this.data.hiddenName
     })
   },
-  click: function (e) {
+  click: function(e) {
     var id = e.target.id
     var idd = e.target.dataset.id
     console.log(id)
     console.log(idd)
     this.setData({
       hiddenName: !this.data.hiddenName,
-      id:id,
+      id: id,
       idd: idd,
     })
   },
-   clickMe2: function (e) {
-   
+  clickMe2: function(e) {
+
     this.setData({
       hiddenName2: !this.data.hiddenName2
-    }  )
+    })
   },
-  click2: function (e) {
+  click2: function(e) {
     var id2 = e.target.id
     var idd2 = e.target.dataset.id
     console.log(id2)
     this.setData({
       hiddenName2: !this.data.hiddenName2,
-      id2:id2,
+      id2: id2,
       idd2: idd2,
     })
   },
-  clickMe3: function (e) {
+  clickMe3: function(e) {
 
     this.setData({
       hiddenName3: !this.data.hiddenName3
     })
   },
-  click3: function (e) {
+  click3: function(e) {
     var id3 = e.target.id
     var idd3 = e.target.dataset.id
     console.log(id3)
     this.setData({
       hiddenName3: !this.data.hiddenName3,
       id3: id3,
-      idd3:idd3
+      idd3: idd3
     })
   },
-  clickMe4: function (e) {
+  clickMe4: function(e) {
 
     this.setData({
       hiddenName4: !this.data.hiddenName4
     })
   },
-  click4: function (e) {
+  click4: function(e) {
     var id4 = e.target.id
     var idd4 = e.target.dataset.id
     console.log(id4)
     this.setData({
       hiddenName4: !this.data.hiddenName4,
       id4: id4,
-      idd4:idd4
+      idd4: idd4
     })
   },
-  clickMe5: function (e) {
+  clickMe5: function(e) {
 
     this.setData({
       hiddenName5: !this.data.hiddenName5
     })
   },
-  click5: function (e) {
+  click5: function(e) {
     var id5 = e.target.id
     var idd5 = e.target.dataset.id
     console.log(id5)
     this.setData({
       hiddenName5: !this.data.hiddenName5,
       id5: id5,
-      idd5:idd5
+      idd5: idd5
     })
   },
-  clickMe6: function (e) {
+  clickMe6: function(e) {
 
     this.setData({
       hiddenName6: !this.data.hiddenName6
     })
   },
-  click6: function (e) {
+  click6: function(e) {
     var id6 = e.target.id
     var idd6 = e.target.dataset.id
     console.log(id6)
     this.setData({
       hiddenName6: !this.data.hiddenName6,
       id6: id6,
-      idd6:idd6
+      idd6: idd6
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    var that=this
+  onLoad: function() {
+    var that = this
 
     var adminis = app.globalData.adminis
     var finduser = app.globalData.finduser
@@ -143,84 +167,144 @@ Page({
     var openid = obj.openid;
     console.log(openid)
   },
-qingkong:function(){
-  var that = this
-  that.setData({
-    id:"",
-    id2:"",
-    id3: "",
-    id4: "",
-    id5: "",
-    id6: "",
+  qingkong: function() {
+    var that = this
+    that.setData({
+      id: "",
+      id2: "",
+      id3: "",
+      id4: "",
+      id5: "",
+      id6: "",
 
 
-  })
-},
-jisuan:function(){
-  
+    })
+  },
+  jisuan: function() {
+    var that = this;
+    var listAll = [];
+    var wintime = 0;
+    const db = wx.cloud.database();
+    db.collection('SY_LHDataAnalysis_shuju').where({
+        finduser: app.globalData.finduser
+      })
+      .get({
 
-  
+        success(res) {
+          listAll.push(res.data)
+          listAll[0].sort(that.compare("shuju8")); //排序
+          that.setData({
+
+              listAll: listAll[0]
+              // listAll: res.data
+            },
+            // console.log(listAll)
+          )
+
+          //分析逻辑
 
 
-}  , 
-    
+          var countResult = listAll[0].length;
+
+          // let arrayItem = that.data.listAll;
+          // for (let item of arrayItem) 
+          // for (var i = 0; i < listAll[0].length; i++) 
+          var xianwin = 0;
+          var winup_time = 0;
+          for (var index in listAll[0]) {
+            console.log("index:" + String(index) +'---'+ String(listAll[0][index].shuju1))
+            if (index == 0) {
+              if (listAll[0][index].shuju7 == '闲') {
+                xianwin = 1
+              }
+
+            }
+            if (xianwin == 1 && listAll[0][index].shuju7 == '闲') {
+              winup_time = winup_time + 1
+            } else if (xianwin == 1 && listAll[0][index].shuju7 != '闲') {
+              break
+            }
+
+
+          }
+          // console.log("xianwin:" + String(xianwin))
+          if (xianwin == 0)
+            wintime = '50%'
+          else {
+            console.log("09023:" + String(winup_time))
+            wintime = 0.5
+            for (var i = 0; i < winup_time; i++) {
+              wintime = wintime - 0.02
+
+            }
+
+          }
+          showmsg = wintime*100,
+            console.log("xx" + String(showmsg))
+          showToastAuto(that)
+
+        }
+      })
+  },
+
 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  luru:function() {
-    var shuju7='0'
-    var that =this;
+  luru: function() {
+    var shuju7 = '0'
+    var that = this;
     var finduser = app.globalData.finduser
     const db = wx.cloud.database();
-    
-     var zhuang1, zhuang2, zhuang3, xian1, xian2, xian3
+    var time = util.formatTimeblank(new Date());
+
+    var zhuang1, zhuang2, zhuang3, xian1, xian2, xian3
     zhuang1 = parseInt(that.data.id);
     zhuang2 = parseInt(that.data.id2);
     zhuang3 = parseInt(that.data.id5);
@@ -231,80 +315,74 @@ jisuan:function(){
     console.log(xian1 + xian2)
     console.log(zhuang3)
     console.log(xian3)
-      if (zhuang1 + zhuang2 == 8 || zhuang1 + zhuang2 == 9) {
-        if (xian1 + xian2 !== 8 || xian1 + xian2 !== 9) {
-          console.log("庄家赢")
-          shuju7 = "庄"
-        }
-        if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
-          if (zhuang3 > xian3) {
-
-            console.log("庄家赢")
-            shuju7 = "庄"
-          }
-
-          if (zhuang3 < xian3) {
-            console.log("闲家赢")
-            shuju7 = "闲"
-          }
-          if (zhuang3 = xian3) {
-            console.log("平局")
-            shuju7 = "平"
-          }
-        }
-      }
-      else if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
-        console.log("闲家赢")
-        shuju7 = "闲"
-      }
-      
-      else if (zhuang1 + zhuang2 == xian1 + xian2 && zhuang3 == xian3) {
-        console.log("平局")
-        shuju7 = "平"
-      }
-
-      else if (zhuang3 > xian3) {
-
+    if (zhuang1 + zhuang2 == 8 || zhuang1 + zhuang2 == 9) {
+      if (xian1 + xian2 !== 8 || xian1 + xian2 !== 9) {
         console.log("庄家赢")
         shuju7 = "庄"
       }
-      else if (zhuang3 < xian3) {
+      if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
+        if (zhuang3 > xian3) {
 
-        console.log("闲家赢")
-        shuju7 = "闲"
+          console.log("庄家赢")
+          shuju7 = "庄"
+        }
+
+        if (zhuang3 < xian3) {
+          console.log("闲家赢")
+          shuju7 = "闲"
+        }
+        if (zhuang3 = xian3) {
+          console.log("平局")
+          shuju7 = "平"
+        }
       }
-      else if (zhuang3 == xian3) {
+    } else if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
+      console.log("闲家赢")
+      shuju7 = "闲"
+    } else if (zhuang1 + zhuang2 == xian1 + xian2 && zhuang3 == xian3) {
+      console.log("平局")
+      shuju7 = "平"
+    } else if (zhuang3 > xian3) {
 
-        console.log("平局")
-        shuju7 = "平"
-      }
+      console.log("庄家赢")
+      shuju7 = "庄"
+    } else if (zhuang3 < xian3) {
+
+      console.log("闲家赢")
+      shuju7 = "闲"
+    } else if (zhuang3 == xian3) {
+
+      console.log("平局")
+      shuju7 = "平"
+    }
 
 
 
-     db.collection('SY_LHDataAnalysis_shuju').add({
-     
+    db.collection('SY_LHDataAnalysis_shuju').add({
+
       data: {
-       
-        shuju1:that.data.idd,
+
+        shuju1: that.data.idd,
         shuju2: that.data.idd2,
         shuju3: that.data.idd3,
         shuju4: that.data.idd4,
         shuju5: that.data.idd5,
         shuju6: that.data.idd6,
         shuju7: shuju7,
-       finduser : finduser
+        shuju8: time,
+        finduser: finduser
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id
         this.setData({
-        
-          
+
+
         })
         wx.showToast({
           title: '录入成功',
         })
-       }
-         })
+      }
+    })
     this.qingkong()
-   }
+  }
 })

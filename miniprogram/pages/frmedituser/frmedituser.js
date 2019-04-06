@@ -43,6 +43,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    app.editTabBar1(); //底部栏
     var time = util.formatTime(new Date());
 
     this.setData({

@@ -40,7 +40,11 @@
   <view class="divLine"></view>
 </view>
 
-<button>设定参数</button>
+ 
+<navigator class="txbt" url='/pages/frmbasedata/frmbasedata'>
+
+  <text class="nav-mainitem-text">设定参数</text>
+</navigator>
 
 <view class="container">
   <!-- 分割线 -->

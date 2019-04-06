@@ -33,6 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    app.editTabBar1(); //底部栏
     const db = wx.cloud.database();
     db.collection('SY_LHDataAnalysis_user').doc('XJuFPYnnuWjci0CF').get({
       success(res) {

@@ -53,7 +53,7 @@ Page({
 
   onLoad: function(a) {
    
-
+   
     // 监听数据 同步全局
     Object.defineProperty(this.data, "userInfo", {
       set: data => {
