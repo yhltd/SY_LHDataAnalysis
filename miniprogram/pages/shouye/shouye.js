@@ -1,16 +1,40 @@
 // pages/shouye/shouye.js
 var util = require('../../utils/util.js');
+var util = require('../../utils/util.js');
 var app = getApp();
 var showmsg = '';
 var showToastAuto = function(that) {
   var self = that;
   wx.showToast({
-    title: '闲赢概率：' + String(showmsg) + '%',
+    title: '闲赢：' + String(showmsg) + '%',
     image: '/images/btn.png',
+    duration: 2000,
     success: function(res) {
       self.setData({
         msg: '消息提示消失！'
       });
+    }
+  })
+}
+
+function getData(id, page) {
+  // 从本地存储获取数据
+
+  var arr = wx.getStorageSync("txt");
+  arr.forEach(function(item) {
+    if (arr.length) {
+      console.log('ty:' + arr.length + '----' + item)
+      //  遍历数据并根据id显示当前记事本内容
+      if (item.id == id) {
+        page.setData({
+            //  匹配记事本后将id与content绑定到页面实例
+            id: item.id,
+            content: item.content
+          },
+          console.log('1212:' + content)
+
+        )
+      }
     }
   })
 }
@@ -40,8 +64,8 @@ Page({
     id5: 0,
     id6: 0,
     listAll: [],
-    msg: ''
-
+    msg: '',
+    list_split_txt: []
   },
   compare: function(property) {
     return function(a, b) {
@@ -151,7 +175,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function(e) {
     var that = this
 
     var adminis = app.globalData.adminis
@@ -166,6 +190,7 @@ Page({
     var idd = that.data.id;
     var openid = obj.openid;
     console.log(openid)
+
   },
   qingkong: function() {
     var that = this
@@ -180,12 +205,14 @@ Page({
 
     })
   },
-  jisuan: function() {
+  jisuan: function(e) {
     var that = this;
     var listAll = [];
+    var list_split_txt = [];
     var wintime = 0;
+    const MAX_LIMIT = 1000;
     const db = wx.cloud.database();
-    db.collection('SY_LHDataAnalysis_shuju').where({
+    db.collection('SY_LHDataAnalysis_shuju').limit(MAX_LIMIT).where({
         finduser: app.globalData.finduser
       })
       .get({
@@ -212,7 +239,7 @@ Page({
           var xianwin = 0;
           var winup_time = 0;
           for (var index in listAll[0]) {
-            console.log("index:" + String(index) +'---'+ String(listAll[0][index].shuju1))
+            // console.log("index:" + String(index) +'---'+ String(listAll[0][index].shuju1))
             if (index == 0) {
               if (listAll[0][index].shuju7 == '闲') {
                 xianwin = 1
@@ -227,22 +254,66 @@ Page({
 
 
           }
+          //参数1
           // console.log("xianwin:" + String(xianwin))
           if (xianwin == 0)
-            wintime = '50%'
+            wintime = 50
           else {
-            console.log("09023:" + String(winup_time))
-            wintime = 0.5
+            // console.log("09023:" + String(winup_time))
+            wintime = 50
             for (var i = 0; i < winup_time; i++) {
-              wintime = wintime - 0.02
+              wintime = wintime - 2
 
             }
 
           }
-          showmsg = wintime*100,
-            console.log("xx" + String(showmsg))
-          showToastAuto(that)
+          //参数2
 
+          // getData(id, this);
+
+          var filepath1 = wx.env.USER_DATA_PATH + '/data.txt';
+          // console.log('文件', filepath1);
+          filepath1 = '/images/data.txt';
+          // let txt = FileSystemManager.readFile(filepath, "utf-8")
+          // console.log(txt)
+          var FileManager = wx.getFileSystemManager();
+          FileManager.readFile({
+
+            filePath: filepath1,
+
+            encoding: 'utf8',
+
+            success: function(data) { //成功时
+
+              // console.log('文件内容', data.data);
+              list_split_txt = data.data.split(',');
+              that.setData({
+
+                  list_split_txt: list_split_txt
+
+                },
+
+              )
+              // console.log('内容a', list_split_txt);           
+              // console.log('内容', list_split_txt[0]);
+
+              var can2data = 0;
+              console.log(list_split_txt);
+              if (list_split_txt.length > 0 && winup_time > 0) {
+
+                var list_split_txt2 = list_split_txt[winup_time].split(' ');
+                if (list_split_txt2.length > 1)
+                  can2data = list_split_txt2[1] * 1.1;
+
+                console.log("can2data=" + String(can2data))
+              };
+              console.log(String(wintime) + '-' + String(can2data) + '=' + String(wintime - can2data))
+              showmsg = (wintime - can2data),
+                console.log("xx" + String(showmsg.toFixed(2)))
+              showToastAuto(that)
+            }
+
+          });
         }
       })
   },
