@@ -7,7 +7,8 @@ var showToastAuto = function(that) {
   var self = that;
   wx.showToast({
     title: '闲赢：' + String(showmsg) + '%',
-    image: 'cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/btn.png',
+    image: '/images/btn.png',
+    // image: 'https://7968-yhltd-028b95-1258471393.tcb.qcloud.la/SY_LHDataAnalysis/btn.png?sign=455f4df0922c815857202c0bf7dbaa9a&t=1554721629',
     duration: 2000,
     success: function(res) {
       self.setData({
@@ -67,7 +68,11 @@ Page({
     msg: '',
     xianmsg: 0,
     zhuangmsg: 0,
-    list_split_txt: []
+    list_split_txt: [],
+    Canshu_listAll: [],
+    canshu1: '',
+    canshu2: ''
+
   },
   compare: function(property) {
     return function(a, b) {
@@ -258,6 +263,8 @@ Page({
 
           }
           //参数1
+
+          console.log( that.data.Canshu_listAll[0].canshu )
           // console.log("xianwin:" + String(xianwin))
           if (xianwin == 0)
             wintime = 50
@@ -265,64 +272,77 @@ Page({
             // console.log("09023:" + String(winup_time))
             wintime = 50
             for (var i = 0; i < winup_time; i++) {
-              wintime = wintime - 2
-
+              // wintime = wintime - 2
+              wintime = wintime - parseFloat(that.data.Canshu_listAll[0].canshu)
             }
 
           }
           //参数2
+          wx.cloud.downloadFile({
+            fileID: 'cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/data.txt', // 文件 ID
 
-          // getData(id, this);
+            success: res => {
 
-          var filepath1 = wx.env.USER_DATA_PATH + '/data.txt';
-          // console.log('文件', filepath1);
-          filepath1 = '/images/data.txt';
-          // let txt = FileSystemManager.readFile(filepath, "utf-8")
-          // console.log(txt)
-          var FileManager = wx.getFileSystemManager();
-          FileManager.readFile({
+              console.log(res.tempFilePath)
 
-            filePath: filepath1,
+              // getData(id, this);
 
-            encoding: 'utf8',
+              var filepath1 = wx.env.USER_DATA_PATH + '/data.txt';
+              // console.log('文件', filepath1);
+              // filepath1 = '/images/data.txt';
 
-            success: function(data) { //成功时
 
-              // console.log('文件内容', data.data);
-              list_split_txt = data.data.split(',');
-              that.setData({
+              filepath1 = res.tempFilePath
+              // let txt = FileSystemManager.readFile(filepath, "utf-8")
+              // console.log(txt)
+              var FileManager = wx.getFileSystemManager();
+              FileManager.readFile({
 
-                  list_split_txt: list_split_txt
+                filePath: filepath1,
 
-                },
+                encoding: 'utf8',
 
-              )
-              // console.log('内容a', list_split_txt);           
-              // console.log('内容', list_split_txt[0]);
+                success: function(data) { //成功时
 
-              var can2data = 0;
-              console.log(list_split_txt);
-              if (list_split_txt.length > 0 && winup_time > 0) {
+                  // console.log('文件内容', data.data);
+                  list_split_txt = data.data.split(',');
+                  that.setData({
 
-                var list_split_txt2 = list_split_txt[winup_time].split(' ');
-                if (list_split_txt2.length > 1)
-                  can2data = list_split_txt2[1] * 1.1;
+                      list_split_txt: list_split_txt
 
-                console.log("can2data=" + String(can2data))
-              };
-              console.log(String(wintime) + '-' + String(can2data) + '=' + String(wintime - can2data))
-              showmsg = (wintime - can2data),
-                that.setData({
+                    },
 
-                  xianmsg: showmsg,
-                  zhuangmsg: 100 - showmsg
-                }),
+                  )
+                  // console.log('内容a', list_split_txt);           
+                  // console.log('内容', list_split_txt[0]);
 
-                console.log("xx" + String(showmsg.toFixed(2)))
-              showToastAuto(that)
-            }
+                  var can2data = 0;
+                  console.log(list_split_txt);
+                  if (list_split_txt.length > 0 && winup_time > 0) {
 
-          });
+                    var list_split_txt2 = list_split_txt[winup_time].split(' ');
+                    if (list_split_txt2.length > 1)
+                      // can2data = list_split_txt2[1] * 1.1;
+                      can2data = list_split_txt2[1] * parseFloat(that.data.Canshu_listAll[0].canshu2);
+                    console.log("can2data=" + String(can2data))
+                  };
+                  console.log(String(wintime) + '-' + String(can2data) + '=' + String(wintime - can2data))
+                  showmsg = (wintime - can2data),
+                    that.setData({
+
+                      xianmsg: showmsg,
+                      zhuangmsg: 100 - showmsg
+                    }),
+
+                    console.log("xx" + String(showmsg.toFixed(2)))
+                  showToastAuto(that)
+                }
+
+              });
+            },
+            fail: console.error
+
+          })
         }
       })
   },
@@ -340,6 +360,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+
+    var that = this;
+    const db = wx.cloud.database();
+    var Canshu_listAll = [];
+    var canshu1, canshu2;
+    db.collection('SY_LHDataAnalysis_canshu').where({
+
+        name: app.globalData.finduser
+      })
+      .get({
+        success(res) {
+
+          Canshu_listAll.push(res.data)
+          that.setData({
+              Canshu_listAll: Canshu_listAll[0]
+            },
+            console.log(Canshu_listAll[0][0].canshu),
+
+          )
+
+        }
+      })
+
 
   },
 

@@ -82,6 +82,16 @@ Page({
 
 
   },
+  navgiate: function () {
+    //登录状态写入缓存
+    wx.setStorage({
+      key: "IsLogin",
+      data: false
+    }),
+      wx.navigateTo({
+      url: '../login/login',
+      })
 
+  }
 
 });
