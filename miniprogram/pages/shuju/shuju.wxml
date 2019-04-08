@@ -1,5 +1,6 @@
 <!--pages/shuju/shuju.wxml-->
-<view style="background-image: url('/images/all.png'); min-height:100%;background-size: 100% 100%;">
+<view style="background-image: url('cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/all.png'); min-height:100%;background-size: 100% 100%;">
+<!-- <view class="a123"> -->
 <view class="lishi">历史数据：</view>
 
 <!-- <view class="container">

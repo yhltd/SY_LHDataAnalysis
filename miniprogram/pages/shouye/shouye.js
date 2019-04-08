@@ -7,7 +7,7 @@ var showToastAuto = function(that) {
   var self = that;
   wx.showToast({
     title: '闲赢：' + String(showmsg) + '%',
-    image: '/images/btn.png',
+    image: 'cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/btn.png',
     duration: 2000,
     success: function(res) {
       self.setData({
