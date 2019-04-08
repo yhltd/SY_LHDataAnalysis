@@ -65,6 +65,8 @@ Page({
     id6: 0,
     listAll: [],
     msg: '',
+    xianmsg: 0,
+    zhuangmsg: 0,
     list_split_txt: []
   },
   compare: function(property) {
@@ -201,7 +203,8 @@ Page({
       id4: "",
       id5: "",
       id6: "",
-
+      xianmsg: 0,
+      zhuangmsg: 0
 
     })
   },
@@ -309,6 +312,12 @@ Page({
               };
               console.log(String(wintime) + '-' + String(can2data) + '=' + String(wintime - can2data))
               showmsg = (wintime - can2data),
+                that.setData({
+
+                  xianmsg: showmsg,
+                  zhuangmsg: 100 - showmsg
+                }),
+
                 console.log("xx" + String(showmsg.toFixed(2)))
               showToastAuto(that)
             }
