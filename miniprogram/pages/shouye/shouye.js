@@ -279,7 +279,7 @@ Page({
           }
           //参数2
           wx.cloud.downloadFile({
-            fileID: 'cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/data.txt', // 文件 ID
+            fileID: 'cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/txt/data.txt', // 文件 ID
 
             success: res => {
 

@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listAll: []
+    listAll: [],
+    filename:''
   },
 
   /**
@@ -113,8 +114,30 @@ Page({
 
 
   },
+  wx_up() {
+    var myThis = this;
+    var filename;
+    wx.chooseImage({
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        const cloudPath = 'SY_LHDataAnalysis/txt/data' + tempFilePaths[0].match(/\.[^.]+?$/)[0]
 
-
+        wx.cloud.uploadFile({        
+          cloudPath,
+          filePath: tempFilePaths[0],
+          name: 'data',
+          success(res) {
+            myThis.setData({
+              statusCode: res.statusCode,
+              filename: tempFilePaths[0]
+            })
+          }
+        },
+          console.log(tempFilePaths[0])
+        )
+      }
+    })
+  },
 
   /**
    * 用户点击右上角分享
