@@ -72,6 +72,8 @@ Page({
     Canshu_listAll: [],
     canshu1: '',
     canshu2: ''
+    // winup_time : 0,
+    // wintime : 0
 
   },
   compare: function(property) {
@@ -217,6 +219,8 @@ Page({
     var that = this;
     var listAll = [];
     var list_split_txt = [];
+    var listAll_canshu1 = [];
+    var winup_time = 0;
     var wintime = 0;
     const MAX_LIMIT = 1000;
     const db = wx.cloud.database();
@@ -237,113 +241,133 @@ Page({
           )
 
           //分析逻辑
-
-
           var countResult = listAll[0].length;
 
           // let arrayItem = that.data.listAll;
           // for (let item of arrayItem) 
           // for (var i = 0; i < listAll[0].length; i++) 
           var xianwin = 0;
-          var winup_time = 0;
+
           for (var index in listAll[0]) {
-            // console.log("index:" + String(index) +'---'+ String(listAll[0][index].shuju1))
+
             if (index == 0) {
               if (listAll[0][index].shuju7 == '闲') {
                 xianwin = 1
               }
-
             }
             if (xianwin == 1 && listAll[0][index].shuju7 == '闲') {
-              winup_time = winup_time + 1
+              // winup_time = winup_time + 1
             } else if (xianwin == 1 && listAll[0][index].shuju7 != '闲') {
               break
             }
-
-
           }
           //参数1
 
-          console.log( that.data.Canshu_listAll[0].canshu )
-          // console.log("xianwin:" + String(xianwin))
-          if (xianwin == 0)
-            wintime = 50
-          else {
-            // console.log("09023:" + String(winup_time))
-            wintime = 50
-            for (var i = 0; i < winup_time; i++) {
-              // wintime = wintime - 2
-              wintime = wintime - parseFloat(that.data.Canshu_listAll[0].canshu)
-            }
+          //新加逻辑筛选之前出现过的相同牌型的次数
+          db.collection('SY_LHDataAnalysis_shuju').limit(MAX_LIMIT).where({
+              shuju1: parseInt(that.data.id),
+              shuju2: parseInt(that.data.id2),
+              shuju3: parseInt(that.data.id3),
+              shuju4: parseInt(that.data.id4),
+              shuju5: parseInt(that.data.id5),
+              shuju6: parseInt(that.data.id6)
+            })
+            .get({
 
-          }
-          //参数2
-          wx.cloud.downloadFile({
-            fileID: 'cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/txt/data.txt', // 文件 ID
+              success(res) {
+                listAll_canshu1.push(res.data)
+                listAll_canshu1[0].sort(that.compare("shuju8")); //排序
+                that.setData({
 
-            success: res => {
+                    listAll_canshu1: listAll_canshu1[0],
+                    // listAll: res.data
+                  },
+                  winup_time = listAll_canshu1.length,
 
-              console.log(res.tempFilePath)
+                  // console.log('winup_timefff:' +  winup_time),
+                  // console.log('listAll_canshu1内容', listAll_canshu1[0])
+                )
 
-              // getData(id, this);
-
-              var filepath1 = wx.env.USER_DATA_PATH + '/data.txt';
-              // console.log('文件', filepath1);
-              // filepath1 = '/images/data.txt';
-
-
-              filepath1 = res.tempFilePath
-              // let txt = FileSystemManager.readFile(filepath, "utf-8")
-              // console.log(txt)
-              var FileManager = wx.getFileSystemManager();
-              FileManager.readFile({
-
-                filePath: filepath1,
-
-                encoding: 'utf8',
-
-                success: function(data) { //成功时
-
-                  // console.log('文件内容', data.data);
-                  list_split_txt = data.data.split(',');
-                  that.setData({
-
-                      list_split_txt: list_split_txt
-
-                    },
-
-                  )
-                  // console.log('内容a', list_split_txt);           
-                  // console.log('内容', list_split_txt[0]);
-
-                  var can2data = 0;
-                  console.log(list_split_txt);
-                  if (list_split_txt.length > 0 && winup_time > 0) {
-
-                    var list_split_txt2 = list_split_txt[winup_time].split(' ');
-                    if (list_split_txt2.length > 1)
-                      // can2data = list_split_txt2[1] * 1.1;
-                      can2data = list_split_txt2[1] * parseFloat(that.data.Canshu_listAll[0].canshu2);
-                    console.log("can2data=" + String(can2data))
-                  };
-                  console.log(String(wintime) + '-' + String(can2data) + '=' + String(wintime - can2data))
-                  showmsg = (wintime - can2data),
-                    that.setData({
-
-                      xianmsg: showmsg,
-                      zhuangmsg: 100 - showmsg
-                    }),
-
-                    console.log("xx" + String(showmsg.toFixed(2)))
-                  showToastAuto(that)
+                console.log('winup_time:' + winup_time)
+                // console.log("xianwin:" + String(xianwin))
+                if (xianwin == 0)
+                  wintime = 50
+                else {
+                  var las = 0;
+                  wintime = 50
+                  // winup_time=1
+                  for (var i = 0; i < listAll_canshu1.length; i++) {
+                    wintime = wintime + parseFloat(that.data.Canshu_listAll[0].canshu)
+                  }
+                   
+                    console.log('参数1=' + String(50) + '+' + String(parseFloat(that.data.Canshu_listAll[0].canshu)) + '=' + String(wintime ))
                 }
 
-              });
-            },
-            fail: console.error
 
-          })
-        }
+                //参数2
+                wx.cloud.downloadFile({
+                  fileID: 'cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/txt/data.txt', // 文件 ID
+                  success: res => {
+
+                    console.log(res.tempFilePath)
+
+                    // getData(id, this);
+
+                    var filepath1 = wx.env.USER_DATA_PATH + '/data.txt';
+                    // console.log('文件', filepath1);
+                    // filepath1 = '/images/data.txt';
+                    filepath1 = res.tempFilePath
+                    // let txt = FileSystemManager.readFile(filepath, "utf-8")
+                    // console.log(txt)
+                    var FileManager = wx.getFileSystemManager();
+                    FileManager.readFile({
+                      filePath: filepath1,
+
+                      encoding: 'utf8',
+
+                      success: function(data) { //成功时
+
+                        // console.log('文件内容', data.data);
+                        list_split_txt = data.data.split(',');
+                        that.setData({
+
+                            list_split_txt: list_split_txt
+
+                          },
+
+                        )
+                        // console.log('内容a', list_split_txt);           
+                        // console.log('内容', list_split_txt[0]);
+
+                        var can2data = 0;
+                        // console.log(list_split_txt);
+                        if (list_split_txt.length > 0 && winup_time > 0) {
+
+                          var list_split_txt2 = list_split_txt[winup_time].split(' ');
+                          if (list_split_txt2.length > 1)
+                            // can2data = list_split_txt2[1] * 1.1;
+                            can2data = list_split_txt2[1] * parseFloat(that.data.Canshu_listAll[0].canshu2);
+                          // console.log("can2data=" + String(can2data))
+                        };
+                        console.log(String(wintime) + '+' + String(can2data) + '=' + String(wintime + can2data))
+                        showmsg = (wintime + can2data),
+                          that.setData({
+                            xianmsg: showmsg,
+                            zhuangmsg: 100 - showmsg
+                          }),
+
+                          console.log("xx" + String(showmsg.toFixed(2)))
+                        showToastAuto(that)
+                      }
+
+                    });
+                  },
+                  fail: console.error
+
+                })
+              }
+            });
+        } //sucee 1
       })
   },
 
