@@ -100,12 +100,14 @@ Page({
       id: id,
       idd: idd,
     })
+    this.clickMe2()
   },
   clickMe2: function(e) {
 
     this.setData({
       hiddenName2: !this.data.hiddenName2
     })
+    
   },
   click2: function(e) {
     var id2 = e.target.id
@@ -116,6 +118,7 @@ Page({
       id2: id2,
       idd2: idd2,
     })
+    this.clickMe3()
   },
   clickMe3: function(e) {
 
@@ -132,6 +135,7 @@ Page({
       id3: id3,
       idd3: idd3
     })
+    this.clickMe4()
   },
   clickMe4: function(e) {
 
@@ -148,6 +152,7 @@ Page({
       id4: id4,
       idd4: idd4
     })
+    // this.clickMe5()
   },
   clickMe5: function(e) {
 
@@ -164,6 +169,7 @@ Page({
       id5: id5,
       idd5: idd5
     })
+    // this.clickMe6()
   },
   clickMe6: function(e) {
 
