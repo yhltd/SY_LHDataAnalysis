@@ -471,42 +471,42 @@ Page({
     if (zhuang1 + zhuang2 == 8 || zhuang1 + zhuang2 == 9) {
       if (xian1 + xian2 !== 8 || xian1 + xian2 !== 9) {
         console.log("庄家赢")
-        shuju7 = "庄"
+        shuju7 = "Z"
       }
       if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
         if (zhuang3 > xian3) {
 
           console.log("庄家赢")
-          shuju7 = "庄"
+          shuju7 = "Z"
         }
 
         if (zhuang3 < xian3) {
           console.log("闲家赢")
-          shuju7 = "闲"
+          shuju7 = "X"
         }
         if (zhuang3 = xian3) {
           console.log("平局")
-          shuju7 = "平"
+          shuju7 = "X"
         }
       }
     } else if (xian1 + xian2 == 8 || xian1 + xian2 == 9) {
       console.log("闲家赢")
-      shuju7 = "闲"
+      shuju7 = "X"
     } else if (zhuang1 + zhuang2 == xian1 + xian2 && zhuang3 == xian3) {
       console.log("平局")
-      shuju7 = "平"
+      shuju7 = "P"
     } else if (zhuang3 > xian3) {
 
       console.log("庄家赢")
-      shuju7 = "庄"
+      shuju7 = "Z"
     } else if (zhuang3 < xian3) {
 
       console.log("闲家赢")
-      shuju7 = "闲"
+      shuju7 = "X"
     } else if (zhuang3 == xian3) {
 
       console.log("平局")
-      shuju7 = "平"
+      shuju7 = "P"
     }
 
 
@@ -522,7 +522,7 @@ Page({
         shuju5: that.data.idd5,
         shuju6: that.data.idd6,
         shuju7: shuju7,
-        shuju8: time,
+        shuju8: parseFloat(String(time).replace("-", "").replace("-", "")),
         finduser: finduser
       },
       success: res => {

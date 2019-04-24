@@ -1,4 +1,7 @@
 /**app.wxss**/
+@import "./style/position.wxss";
+@import "./style/image.wxss";
+@import "./style/button.wxss";
 
 .container {
   display: flex;
@@ -638,4 +641,12 @@
 
 .hs20 {
   height: 40rpx;
+}
+view {
+	box-sizing: border-box;
+}
+
+input {
+	padding-left: 15rpx;
+	font-size: 26rpx;
 }

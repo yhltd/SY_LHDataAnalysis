@@ -17,7 +17,8 @@
     "pages/frmadminindex/frmadminindex",
     "pages/frmedituser/frmedituser",
     "pages/frmgerenxinxi/frmgerenxinxi",
-    "pages/frmbasedata/frmbasedata"
+    "pages/frmbasedata/frmbasedata",
+    "pages/frmDeleteInputData/frmDeleteInputData"
   ],
   "window": {
     "backgroundColor": "#ffffff",

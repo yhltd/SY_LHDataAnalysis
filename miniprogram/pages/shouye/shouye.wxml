@@ -23,9 +23,9 @@
 
 <view class='zhuangxian'>
 <view class='zhuang'>
-庄
+Z
 
-<view class="shenglv">胜率：
+<view class="shenglv">偏差：
 <view class='shenglv1'>{{zhuangmsg}}</view>
 </view>
 </view>
@@ -35,9 +35,9 @@
 
 
 <view class='xian'>
-闲
+X
 
-<view class="shenglv">胜率：
+<view class="shenglv">偏差：
 <view class='shenglv1'>{{xianmsg}}</view>
 </view>
 </view>
@@ -49,10 +49,10 @@
 <view class='shoulu'>
 
 
-<view class='pai1'>庄家前两张牌:
+<view class='pai1'>Z家前两序号:
 
 </view>
-<view class='pai1'>闲家前两张牌：
+<view class='pai1'>X家前两序号：
 </view>
 </view>
 
@@ -89,7 +89,7 @@ class='beimian1' wx:if="{{!id4}}"></image>
 
 </view>
 </view>
-<view class='pai2'>庄家和闲家第三张牌：</view>
+<view class='pai2'>Z家和X家第三序号：</view>
 <view  class='pai4'>
 <view bindtap='clickMe5' class='puke3'>
  <image src='cloud://yhltd-028b95.7968-yhltd-028b95/SY_LHDataAnalysis/图案.jpg' class='beimian'  wx:if="{{!id5}}"></image>
@@ -103,7 +103,7 @@ class='beimian1' wx:if="{{!id4}}"></image>
 
 <view class='button'>
 <button bindtap="qingkong" hidden="{{!hiddenName||!hiddenName2||!hiddenName3||!hiddenName4||!hiddenName5||!hiddenName6}}">清空</button>
-<button bindtap="jisuan" hidden="{{!hiddenName||!hiddenName2||!hiddenName3||!hiddenName4||!hiddenName5||!hiddenName6}}"> 计算胜率</button>
+<button bindtap="jisuan" hidden="{{!hiddenName||!hiddenName2||!hiddenName3||!hiddenName4||!hiddenName5||!hiddenName6}}"> 计算偏差</button>
 
 <button bindtap='luru' hidden="{{!hiddenName||!hiddenName2||!hiddenName3||!hiddenName4||!hiddenName5||!hiddenName6}}">录入</button>
 

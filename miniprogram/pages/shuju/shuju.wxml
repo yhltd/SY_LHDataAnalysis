@@ -9,15 +9,15 @@
 </view> --> 
 
 <view class='pai'>
-<view class='pai1'>庄家前两张牌:
+<view class='pai1'>Z前两序号:
 
 
 
 
 </view>
-<view class='pai1'>闲家前两张牌：</view>
-<view class='pai1'>第三张牌：</view>
-<view class='pai2'>赢家：</view>
+<view class='pai1'>X前两序号：</view>
+<view class='pai1'>第三序号：</view>
+<view class='pai2'>比重：</view>
 </view>
 
 

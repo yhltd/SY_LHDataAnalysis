@@ -1,4 +1,6 @@
 //app.js
+
+var dateUtil = require('./utils/date.js');
 App({
   globalData: {
     finduser: "",
@@ -164,6 +166,9 @@ App({
       
         idx : 0
     },
+    startStation: '',
+    endStation: '',
+    date: dateUtil.getToday()
   },
 
 
