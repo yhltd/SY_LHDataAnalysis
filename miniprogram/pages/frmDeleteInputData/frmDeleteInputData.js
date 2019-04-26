@@ -1,4 +1,8 @@
 //index.js
+// import regeneratorRuntime from '../../regenerator-runtime/runtime.js';
+// import "../../regenerator-runtime/runtime.js";
+//  import { regeneratorRuntime } from '/regenerator-runtime/runtime.js';
+var regeneratorRuntime = require("../../regenerator-runtime/runtime.js");
 
 const dateUtil = require('../../utils/date.js');
 //获取应用实例
@@ -76,7 +80,7 @@ Page({
     let startCity = this.data.selectedDate;
     let endCity = this.data.selectedEndDate;
     console.log('selected startCity date: ' + parseFloat(String(startCity).replace("-", "").replace("-", "") + "000000"));
-    console.log('selected endCity date: ' + parseFloat(String(endCity).replace("-", "").replace("-", "")+"000000"));
+    console.log('selected endCity date: ' + parseFloat(String(endCity).replace("-", "").replace("-", "") + "999990"));
     if (startCity && startCity == '') {
       that.setData({
         'toast.content': '请选择时间',
@@ -100,42 +104,86 @@ Page({
       success: res => {
         console.log(res);
         listAll_canshu1.push(res.data)
-        console.log('time:'+listAll_canshu1[0].length);
+        console.log('time:' + listAll_canshu1[0].length);
         for (var i = 0; i < listAll_canshu1[0].length; i++) {
-          db.collection('SY_LHDataAnalysis_shuju').doc(listAll_canshu1[0][i]._id).remove({
+          //删自己的openid
+          //   db.collection('SY_LHDataAnalysis_shuju').doc(listAll_canshu1[0][i]._id).remove({
+          // // db.collection('SY_LHDataAnalysis_shuju').doc('ee3099285cc15a41065bd21127709088').remove({
+          //   success: res => {
+          //     console.log(res);
 
-            success: res => {
-              console.log(res);
-
+          //   },
+          // })
+          console.log('removeid:' + listAll_canshu1[0][i]._id);
+          //删别人的自己的都可以
+          wx.cloud.callFunction({
+            name: 'removeid',
+            data: {
+              a: listAll_canshu1[0][i]._id
+            
             },
+            success: res => {
+              // wx.showToast({
+              //   title: '删除成功',
+              // })
+            },
+            fail: err => {
+              // wx.showToast({
+              //   icon: 'none',
+              //   title: ' 失败',
+              // })
+              console.error('[云函数]  调用失败：', err)
+            }
+
           })
-        }       
+        }
         wx.showToast({
-          title: '删除成功',
+          title: listAll_canshu1[0].length + '条删除成功',
         })
 
       },
     })
-    // const cloud = require('wx-server-sdk')
-    // cloud.init()
-    // const db = cloud.database()
-    // const _ = db.command
-    // exports.main = async (event, context) => {
-    //   try {
-    //     return await db.collection('SY_LHDataAnalysis_shuju').where({
-    //       shuju2: _.lt(5)
-    //     })
-    //       .get()
-    //   } catch (e) {
-    //     console.error(e)
-    //   }
-    // }
-
-
 
   },
+  del() {
+    // // const cloud = require('wx-server-sdk')
+    // const db = wx.cloud.database()
+    // const _ = db.command
+    // db.collection('SY_LHDataAnalysis_shuju').doc('96c1cbbe5cc1c27c06a00fb3565bbbdb').remove({
+    //   success(res) {
+    //     console.log(res.data)
+    //   }
+    // })
+
+    //2
+    // var exports_mode = require('/cloudfunctions/add/index.js')
+    // var event = { "a": '96c1cbbe5cc1c27c06a00fb3565bbbdb', "b": 2, "userInfo": { "appId": "wxd747b7dd1d8f9e34", "openId": "oPTYg5dSDjYZ2mMdytcw_R8yq3PI" } }
+
+    // exports_mode.main(event, null)
 
 
+    //3
+    wx.cloud.callFunction({
+      name: 'removeid',
+      data: {
+        a: 'ee3099285cc2968706dfae9d0aa5a069'
+        // id: D[id].id,
+      },
+      success: res => {
+        wx.showToast({
+          title: '删除成功',
+        })
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: ' 失败',
+        })
+        console.error('[云函数]  调用失败：', err)
+      }
+
+    })
+  },
 
 
 });

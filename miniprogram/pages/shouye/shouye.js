@@ -252,6 +252,7 @@ Page({
           // let arrayItem = that.data.listAll;
           // for (let item of arrayItem) 
           // for (var i = 0; i < listAll[0].length; i++) 
+          //之前逻辑 如果是 最后一次是闲赢则往上推
           var xianwin = 0;
 
           for (var index in listAll[0]) {
@@ -267,8 +268,14 @@ Page({
               break
             }
           }
-          //参数1
 
+          //参数1
+          console.log('that.data.id'+that.data.id)
+          console.log('that.data.id2' + that.data.id2)
+          console.log('that.data.id3' + that.data.id3)
+          console.log('that.data.id4' + that.data.id4)
+          console.log('that.data.id5' + that.data.id5)
+          console.log('that.data.id6' + that.data.id6)
           //新加逻辑筛选之前出现过的相同牌型的次数
           db.collection('SY_LHDataAnalysis_shuju').limit(MAX_LIMIT).where({
               shuju1: parseInt(that.data.id),
@@ -302,6 +309,7 @@ Page({
                   var las = 0;
                   wintime = 50
                   // winup_time=1
+                  console.log('listAll_canshu1.length:' + listAll_canshu1.length)
                   for (var i = 0; i < listAll_canshu1.length; i++) {
                     wintime = wintime + parseFloat(that.data.Canshu_listAll[0].canshu)
                   }
@@ -523,7 +531,9 @@ Page({
         shuju6: that.data.idd6,
         shuju7: shuju7,
         shuju8: parseFloat(String(time).replace("-", "").replace("-", "")),
+        // _openid: 'oPTYg5dSDjYZ2mMdytcw_R8yq3PI1',
         finduser: finduser
+       
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id

@@ -33,6 +33,7 @@
     </view>
   </view>
   <view class="default-btn" bindtap="checkSchedule">立即删除</view>
+<!-- <view class="default-btn" bindtap="del">立即删除2</view> -->
 
   <template is="toast" data="{{...toast}}"></template>
 </view>
