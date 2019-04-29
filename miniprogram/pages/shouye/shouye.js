@@ -17,6 +17,47 @@ var showToastAuto = function(that) {
     }
   })
 }
+var cleardata = function(that) {
+  console.log("150偏差")
+  const MAX_LIMIT = 1000;
+  const db = wx.cloud.database();
+  var listAll_canshu1 = [];
+  db.collection('SY_LHDataAnalysis_shuju').limit(MAX_LIMIT).where({
+      shuju1: parseInt(that.data.id),
+      shuju2: parseInt(that.data.id2),
+      shuju3: parseInt(that.data.id3),
+      shuju4: parseInt(that.data.id4),
+      shuju5: parseInt(that.data.id5),
+      shuju6: parseInt(that.data.id6)
+    })
+    .get({
+      success: res => {
+        listAll_canshu1.push(res.data)
+        console.log('time:' + listAll_canshu1[0].length);
+        for (var i = 0; i < listAll_canshu1[0].length; i++) {
+          console.log('removeid:' + listAll_canshu1[0][i]._id);
+          //删别人的自己的都可以
+          wx.cloud.callFunction({
+            name: 'removeid',
+            data: {
+              a: listAll_canshu1[0][i]._id
+            },
+            success: res => {},
+            fail: err => {
+              console.error('[云函数]  调用失败：', err)
+            }
+
+          })
+        }
+        // wx.showToast({
+        //   title: listAll_canshu1[0].length + '条删除成功',
+        // })
+
+      },
+
+    })
+
+}
 
 function getData(id, page) {
   // 从本地存储获取数据
@@ -52,18 +93,21 @@ Page({
     hiddenName4: true,
     hiddenName5: true,
     hiddenName6: true,
+    hiddenName7: true,
     idd: 0,
     idd2: 0,
     idd3: 0,
     idd4: 0,
     idd5: 0,
     idd6: 0,
+    idd7: 0,
     id: 0,
     id2: 0,
     id3: 0,
     id4: 0,
     id5: 0,
     id6: 0,
+    id7: 0,
     listAll: [],
     msg: '',
     xianmsg: 0,
@@ -71,6 +115,8 @@ Page({
     list_split_txt: [],
     Canshu_listAll: [],
     canshu1: '',
+    loading: false,
+
     canshu2: ''
     // winup_time : 0,
     // wintime : 0
@@ -107,7 +153,7 @@ Page({
     this.setData({
       hiddenName2: !this.data.hiddenName2
     })
-    
+
   },
   click2: function(e) {
     var id2 = e.target.id
@@ -163,6 +209,22 @@ Page({
   click5: function(e) {
     var id5 = e.target.id
     var idd5 = e.target.dataset.id
+    if (this.data.idd == 10 || this.data.idd2 == 10 || this.data.idd3 == 10 || this.data.idd4 == 10) {
+
+      wx.showModal({
+        title: '警告！',
+        content: '不符合规则，无法录入！',
+        showCancel: false,
+        confirmColor: '#007aff',
+
+      })
+      this.setData({
+        hiddenName5: !this.data.hiddenName5
+      })
+
+      return
+    }
+    console.log('55')
     console.log(id5)
     this.setData({
       hiddenName5: !this.data.hiddenName5,
@@ -180,11 +242,43 @@ Page({
   click6: function(e) {
     var id6 = e.target.id
     var idd6 = e.target.dataset.id
+    if (this.data.idd == 10 || this.data.idd2 == 10 || this.data.idd3 == 10 || this.data.idd4 == 10) {
+
+      wx.showModal({
+        title: '警告！',
+        content: '不符合规则，无法录入！',
+        showCancel: false,
+        confirmColor: '#007aff',
+
+      })
+      this.setData({
+        hiddenName6: !this.data.hiddenName6
+      })
+
+      return
+    }
     console.log(id6)
     this.setData({
       hiddenName6: !this.data.hiddenName6,
       id6: id6,
       idd6: idd6
+    })
+  },
+  //参数2
+  clickMe7: function(e) {
+
+    this.setData({
+      hiddenName7: !this.data.hiddenName7
+    })
+  },
+  click7: function(e) {
+    var id7 = e.target.id
+    var idd7 = e.target.dataset.id
+    console.log(id7)
+    this.setData({
+      hiddenName7: !this.data.hiddenName7,
+      id7: id7,
+      idd7: idd7
     })
   },
   /**
@@ -234,18 +328,15 @@ Page({
         finduser: app.globalData.finduser
       })
       .get({
-
         success(res) {
           listAll.push(res.data)
           listAll[0].sort(that.compare("shuju8")); //排序
           that.setData({
-
               listAll: listAll[0]
               // listAll: res.data
             },
             // console.log(listAll)
           )
-
           //分析逻辑
           var countResult = listAll[0].length;
 
@@ -270,7 +361,7 @@ Page({
           }
 
           //参数1
-          console.log('that.data.id'+that.data.id)
+          console.log('that.data.id' + that.data.id)
           console.log('that.data.id2' + that.data.id2)
           console.log('that.data.id3' + that.data.id3)
           console.log('that.data.id4' + that.data.id4)
@@ -313,8 +404,8 @@ Page({
                   for (var i = 0; i < listAll_canshu1.length; i++) {
                     wintime = wintime + parseFloat(that.data.Canshu_listAll[0].canshu)
                   }
-                   
-                    console.log('参数1=' + String(50) + '+' + String(parseFloat(that.data.Canshu_listAll[0].canshu)) + '=' + String(wintime ))
+
+                  console.log('参数1=' + String(50) + '+' + String(parseFloat(that.data.Canshu_listAll[0].canshu)) + '=' + String(wintime))
                 }
 
 
@@ -344,9 +435,7 @@ Page({
                         // console.log('文件内容', data.data);
                         list_split_txt = data.data.split(',');
                         that.setData({
-
                             list_split_txt: list_split_txt
-
                           },
 
                         )
@@ -358,20 +447,35 @@ Page({
                         if (list_split_txt.length > 0 && winup_time > 0) {
 
                           var list_split_txt2 = list_split_txt[winup_time].split(' ');
-                          if (list_split_txt2.length > 1)
+                          if (list_split_txt2.length > 0)
                             // can2data = list_split_txt2[1] * 1.1;
+                            console.log('idd7:----' + that.data.idd7)
+                          if (that.data.idd7 != '' && that.data.idd7.length > 0) {
+
+                            can2data = parseInt(that.data.idd7) * parseFloat(that.data.Canshu_listAll[0].canshu2);
+                            console.log("输入的参数2 :" + String(parseInt(that.data.idd7)))
+                          } else {
                             can2data = list_split_txt2[1] * parseFloat(that.data.Canshu_listAll[0].canshu2);
-                          // console.log("can2data=" + String(can2data))
-                        };
-                        console.log(String(wintime) + '+' + String(can2data) + '=' + String(wintime + can2data))
+
+                            console.log("txt 行数 + 数字= " + String(winup_time) + '+' + String(list_split_txt2[1]))
+                          }
+                        }
+                        // console.log("can2data=" + String(can2data))
+                        // console.log(String(wintime) + '+' + String(can2data) + '=' + String(wintime + can2data))
                         showmsg = (wintime + can2data),
                           that.setData({
                             xianmsg: showmsg,
                             zhuangmsg: 100 - showmsg
                           }),
-
-                          console.log("xx" + String(showmsg.toFixed(2)))
+                          //清空参数2
+                          that.data.idd7 = '',
+                        console.log("X偏差：" + String(showmsg.toFixed(2)))
                         showToastAuto(that)
+                        // 如果大于 150 清空历史数据
+                      
+                        if (parseFloat(showmsg) > 150 || parseFloat(showmsg) < -150) {
+                          cleardata(that)
+                        }
                       }
 
                     });
@@ -458,6 +562,22 @@ Page({
   onShareAppMessage: function() {
 
   },
+  btzhixing: function() {
+    this.setData({
+      loading: !this.data.loading
+    })
+
+  },
+  canshu2click: function() {
+
+    // wx.navigateTo({
+    //   url: '/pages/frmcanshue_er/frmcanshue_er',
+    // })
+    // this.setData({
+    //   hiddenName7: !this.data.hiddenName7
+    // })
+    this.clickMe7()
+  },
   luru: function() {
     var shuju7 = '0'
     var that = this;
@@ -516,9 +636,6 @@ Page({
       console.log("平局")
       shuju7 = "P"
     }
-
-
-
     db.collection('SY_LHDataAnalysis_shuju').add({
 
       data: {
@@ -533,7 +650,7 @@ Page({
         shuju8: parseFloat(String(time).replace("-", "").replace("-", "")),
         // _openid: 'oPTYg5dSDjYZ2mMdytcw_R8yq3PI1',
         finduser: finduser
-       
+
       },
       success: res => {
         // 在返回结果中会包含新创建的记录的 _id

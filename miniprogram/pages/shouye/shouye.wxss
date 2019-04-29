@@ -1,135 +1,151 @@
 /* pages/shouye/shouye.wxss */
-.zhuangxian{
+
+.zhuangxian {
   display: flex;
-height: 150%
+  height: 150%;
 }
-.zhuang{
-  width:50%;
-font-size: 50px;
-color: red;
-text-align: center;
 
-
-}
-.xian{
-  width:50%;
+.zhuang {
+  width: 50%;
   font-size: 50px;
-  color:blue;
+  color: red;
   text-align: center;
-
 }
-.shenglv{
+
+.xian {
+  width: 50%;
+  font-size: 50px;
+  color: blue;
+  text-align: center;
+}
+
+.shenglv {
   font-size: 20px;
-  color:rgb(145, 99, 99);
+  color: rgb(145, 99, 99);
   height: 50px;
   display: flex;
-margin: 10px 0 0 25px ; 
-text-align: center;
+  margin: 10px 0 0 25px;
+  text-align: center;
 }
-.divLine{
- background: #E0E3DA;
- width: 100%;
- height:20rpx;
+
+.divLine {
+  background: #e0e3da;
+  width: 100%;
+  height: 20rpx;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-} 
-.shoulu{
-display: flex;
-
 }
-.pai1{
-font-size: 15px;
-width: 50%;
 
-text-align: center;
-
-
-color: white
+.shoulu {
+  display: flex;
 }
-.pai2{
-font-size: 15px;
-width: 100%;
 
-color: white;
+.pai1 {
+  font-size: 15px;
+  width: 50%;
+  text-align: center;
+  color: white;
+}
+
+.pai2 {
+  font-size: 15px;
+  width: 100%;
+  color: white;
   text-align: center;
 }
-.button{
+
+.button {
   display: flex;
   width: 100%;
-  
 }
+
+.button_left {
+  /* display: flex; */
+  width: 100%;
+  float: center;
+  height: 60px;
+  line-height: 60px;
+  margin-right: 7rpx;
+}
+
 /* .bai{
   padding-bottom:6.5%;
 } */
-.pai3{
-       
-display: flex;
+
+.pai3 {
+  display: flex;
   width: 40%;
   height: 100px;
   margin: 0 5% 0 5%;
-  background-color: rgba(26, 26, 26, 0.397) ;
+  background-color: rgba(26, 26, 26, 0.397);
 }
-.beimian{
+
+.beimian {
   width: 100%;
   height: 100px;
 }
-.beimian1{
-   width: 100%;
-  height: 100px;
 
+.beimian1 {
+  width: 100%;
+  height: 100px;
 }
-.paikongjian{
-   width: 100%;
-  display: flex
+
+.paikongjian {
+  width: 100%;
+  display: flex;
 }
-.pai4{
+
+.pai4 {
   display: flex;
   width: 40%;
   margin: 0 30% 0% 30%;
-  
 }
-.shenglv1{
-  background-color: rgba(26, 26, 26, 0.397) ;
-  width:30%;
-  height: 25px
-}
-page{
 
-height:100%
-
+.shenglv1 {
+  background-color: rgba(26, 26, 26, 0.397);
+  width: 30%;
+  height: 25px;
 }
+
+page {
+  height: 100%;
+}
+
 /* .picker{
   flex-direction:  column
 } */
-.zhengmian{
-   width: 100%;
+
+.zhengmian {
+  width: 100%;
   height: 100px;
-  background-color: #ffffff;
+  background-color: #fff;
   font-size: 30px;
-   display: flex;
+  display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
-.zhengmian1{
+
+.zhengmian1 {
   min-width: 100%;
   height: 100px;
-  background-color: #ffffff;
+  background-color: #fff;
   font-size: 30px;
-   display: flex;
+  display: flex;
   align-items: center;
-  justify-content: center; 
-  
+  justify-content: center;
 }
-.a123{
-   background-color:darkgreen;
-   min-height:100%;
-   background-size: 100% 100%
+
+.a123 {
+  background-color: darkgreen;
+  min-height: 100%;
+  background-size: 100% 100%;
 }
-.puke3{
+
+.puke3 {
   width: 50%;
-  
 }
