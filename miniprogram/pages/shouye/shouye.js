@@ -566,7 +566,7 @@ Page({
     this.setData({
       loading: !this.data.loading
     })
-
+    cleardata(that)
   },
   canshu2click: function() {
 
